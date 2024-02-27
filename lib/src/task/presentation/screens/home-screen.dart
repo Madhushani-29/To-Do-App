@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:todo/core/constants/color.dart';
+import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/widgets/task-list.dart';
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, dynamic>> data = [
     {'title': 'Daily Scrum Meeting', 'date': '2024-02-26', 'priority': 'High'},
     {
@@ -18,8 +19,24 @@ class _HomeState extends State<Home> {
       'date': '2024-02-27',
       'priority': 'Medium'
     },
-    {'title': 'Team Discussion', 'date': '2024-02-26', 'priority': 'High'},
-    {'title': 'User Interview', 'date': '2024-02-27', 'priority': 'Low'},
+    {'title': 'Team Discussion', 'date': '2024-02-22', 'priority': 'High'},
+    {'title': 'User Interview', 'date': '2024-02-25', 'priority': 'Low'},
+        {'title': 'Daily Scrum Meeting', 'date': '2024-02-26', 'priority': 'High'},
+    {
+      'title': 'Review Project Requirements',
+      'date': '2024-02-27',
+      'priority': 'Medium'
+    },
+    {'title': 'Team Discussion', 'date': '2024-02-22', 'priority': 'High'},
+    {'title': 'User Interview', 'date': '2024-02-25', 'priority': 'Low'},
+        {'title': 'Daily Scrum Meeting', 'date': '2024-02-26', 'priority': 'High'},
+    {
+      'title': 'Review Project Requirements',
+      'date': '2024-02-27',
+      'priority': 'Medium'
+    },
+    {'title': 'Team Discussion', 'date': '2024-02-22', 'priority': 'High'},
+    {'title': 'User Interview', 'date': '2024-02-25', 'priority': 'Low'},
   ];
 
   @override
@@ -52,19 +69,19 @@ class _HomeState extends State<Home> {
                       fontWeight: FontWeight.w500,
                     ),
                     unselectedBackgroundColor: AppColors.primaryBackground,
-                    tabs: [
+                    tabs: const [
                       Tab(
-                        text: "All",
+                        text: AppStrings.tabTitleAll,
                       ),
-                      Tab(text: "Completed")
+                      Tab(text: AppStrings.tabTitleCompleted)
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 29),
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height -
-                        50, // Adjust the height as needed
+                  padding: const EdgeInsets.symmetric(horizontal: 29),
+                  child: Container(
+                    width: double.infinity,
+                    height: MediaQuery.of(context).size.height - 50,
                     child: TabBarView(children: <Widget>[
                       TaskList(data: data),
                       TaskList(data: data),

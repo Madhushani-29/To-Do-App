@@ -12,14 +12,22 @@ class TaskList extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         var task = data[index];
         return Container(
-          height: 200,
+          height: 72.7,
           color: Colors.amberAccent,
           padding: EdgeInsets.all(5),
-          child: Row(
+          child: Column(
             children: [
-              Text(" ${task["title"]}"),
-              Text("${task["date"]}"),
-              Text("${task["priority"]}")
+              Row(
+                children: [
+                  Text(" ${task["title"]}"),
+                ],
+              ),
+              Row(
+                children: [
+                  Text(" ${task["date"]}"),
+                  Text(" ${task["priority"]}"),
+                ],
+              ),
             ],
           ),
         );
