@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
+import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/src/task/presentation/widgets/task-list.dart';
 
 class HomeScreen extends StatefulWidget {
