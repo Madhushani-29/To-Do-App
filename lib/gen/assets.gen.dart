@@ -16,8 +16,11 @@ class $AssetsIconsGen {
   /// File path: assets/icons/update-icon.svg
   String get updateIcon => 'assets/icons/update-icon.svg';
 
+  /// File path: assets/icons/user-icon.svg
+  String get userIcon => 'assets/icons/user-icon.svg';
+
   /// List of all assets
-  List<String> get values => [calenderIcon, updateIcon];
+  List<String> get values => [calenderIcon, updateIcon, userIcon];
 }
 
 class Assets {

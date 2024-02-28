@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
+import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/src/task/presentation/widgets/task-list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -49,8 +52,45 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.amber,
-      ),
+          backgroundColor: Colors.amber,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 28),
+              child: ClipOval(
+                  child: SvgPicture.asset(
+                Assets.icons.userIcon,
+                height: 40,
+              )),
+            )
+          ],
+          title: Padding(
+            padding: const EdgeInsets.only(left: 13),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  (DateTime.now()).hour < 11
+                      ? "Morning!"
+                      : (DateTime.now()).hour < 15
+                          ? "Afternoon!"
+                          : (DateTime.now()).hour < 19
+                              ? "Evening!"
+                              : "Night!",
+                  style: const TextStyle(
+                      color: AppColors.greetingFontColor,
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700),
+                ),
+                const Text(
+                  AppStrings.userName,
+                  style: TextStyle(
+                      color: AppColors.userNameFontColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700),
+                ),
+              ],
+            ),
+          )),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -60,10 +100,12 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 22),
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: ButtonsTabBar(
                     physics: const BouncingScrollPhysics(),
-                    contentPadding: const EdgeInsets.only(right: 10),
+                    contentPadding: const EdgeInsets.only(
+                      right: 10,
+                    ),
                     backgroundColor: AppColors.primaryBackground,
                     labelStyle: const TextStyle(
                       backgroundColor: AppColors.primaryBackground,
@@ -87,10 +129,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 29),
+                  padding: const EdgeInsets.only(left: 29, right: 29, top: 15),
                   child: SizedBox(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height - 50,
+                    height: MediaQuery.of(context).size.height - 140,
                     child: TabBarView(children: <Widget>[
                       TaskList(
                           data: data

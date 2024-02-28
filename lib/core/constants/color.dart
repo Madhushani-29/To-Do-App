@@ -42,4 +42,7 @@ class AppColors {
 
   //text field hint color
   static const Color textFieldHintColor = Color(0xFF828393);
+
+  //greetng font color
+  static const Color greetingFontColor = Color(0xFF636578);
 }
