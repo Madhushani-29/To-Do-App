@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
-import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/src/task/presentation/widgets/task-list.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,34 +11,82 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with SingleTickerProviderStateMixin {
   final List<Map<String, dynamic>> data = [
-    {'title': 'Daily Scrum Meeting', 'date': '2024-02-26', 'priority': 'High'},
+    {
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'High',
+      "status": "completed"
+    },
     {
       'title': 'Review Project Requirements',
       'date': '2024-02-27',
-      'priority': 'Medium'
+      'priority': 'Medium',
+      "status": "completed"
     },
-    {'title': 'Team Discussion', 'date': '2024-02-22', 'priority': 'High'},
-    {'title': 'User Interview', 'date': '2024-02-25', 'priority': 'Low'},
-        {'title': 'Daily Scrum Meeting', 'date': '2024-02-26', 'priority': 'High'},
+    {
+      'title': 'Team Discussion',
+      'date': '2024-02-22',
+      'priority': 'High',
+      "status": "pending"
+    },
+    {
+      'title': 'User Interview',
+      'date': '2024-02-25',
+      'priority': 'Low',
+      "status": "completed"
+    },
+    {
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'High',
+      "status": "pending"
+    },
     {
       'title': 'Review Project Requirements',
       'date': '2024-02-27',
-      'priority': 'Medium'
+      'priority': 'Medium',
+      "status": "completed"
     },
-    {'title': 'Team Discussion', 'date': '2024-02-22', 'priority': 'High'},
-    {'title': 'User Interview', 'date': '2024-02-25', 'priority': 'Low'},
-        {'title': 'Daily Scrum Meeting', 'date': '2024-02-26', 'priority': 'High'},
+    {
+      'title': 'Team Discussion',
+      'date': '2024-02-22',
+      'priority': 'High',
+      "status": "completed"
+    },
+    {
+      'title': 'User Interview',
+      'date': '2024-02-25',
+      'priority': 'Low',
+      "status": "pending"
+    },
+    {
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'High',
+      "status": "completed"
+    },
     {
       'title': 'Review Project Requirements',
       'date': '2024-02-27',
-      'priority': 'Medium'
+      'priority': 'Medium',
+      "status": "completed"
     },
-    {'title': 'Team Discussion', 'date': '2024-02-22', 'priority': 'High'},
-    {'title': 'User Interview', 'date': '2024-02-25', 'priority': 'Low'},
+    {
+      'title': 'Team Discussion',
+      'date': '2024-02-22',
+      'priority': 'High',
+      "status": "pending"
+    },
+    {
+      'title': 'User Interview',
+      'date': '2024-02-25',
+      'priority': 'Low',
+      "status": "pending"
+    },
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     unselectedBackgroundColor: AppColors.primaryBackground,
                     tabs: const [
                       Tab(
-                        text: AppStrings.tabTitleAll,
+                        text: AppStrings.tabTitleTodo,
                       ),
                       Tab(text: AppStrings.tabTitleCompleted)
                     ],
