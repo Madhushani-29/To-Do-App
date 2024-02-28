@@ -18,7 +18,7 @@ class _HomeAppBarState extends State<HomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: AppColors.primaryBackgroundColor,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 28),
