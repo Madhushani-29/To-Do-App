@@ -7,4 +7,10 @@ class AppStrings {
 
   // sample user name
   static const String userName = "Alice Johnston";
+
+  // home title-Tasks
+  static const String homeTitle = "Tasks";
+
+  // date filter button text
+  static const String dateFilterButtonText = "Date";
 }

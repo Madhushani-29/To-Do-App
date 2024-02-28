@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   // white background
-  static const Color primaryBackground = Color(0xffffffff);
+  static const Color primaryBackgroundColor = Color(0xffffffff);
 
   //primary text color
   static const Color primaryTextColor = Color(0xff000000);
@@ -37,6 +37,15 @@ class AppColors {
   //drop down border color
   static const Color dropdownBorderColor = Color(0xFF636578);
 
+  //button border color
+  static const Color buttonBorderColor = Color(0xFF636578);
+
+  //button text color
+  static const Color buttonTextColor = Color(0xFF636578);
+
+  //button icon color
+  static const Color buttonIconColor = Color(0xFF636578);
+
   //text field border color
   static const Color textFieldBorderColor = Color(0xFF828393);
 
@@ -45,4 +54,10 @@ class AppColors {
 
   //greetng font color
   static const Color greetingFontColor = Color(0xFF636578);
+
+  //page title font color
+  static const Color pageTitleFontColor = Color(0xFF2A2A2A);
+
+  // button background color
+  static const Color primaryButtonBackgroundColor = Color(0xffffffff);
 }
