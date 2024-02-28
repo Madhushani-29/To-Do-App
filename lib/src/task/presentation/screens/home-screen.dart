@@ -48,6 +48,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.amber,
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

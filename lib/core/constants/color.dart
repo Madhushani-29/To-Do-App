@@ -30,4 +30,16 @@ class AppColors {
 
   //low priority indicator green
   static const Color lowPriorityIndicatorColor = Color(0xFF35CD28);
+
+  //user name font color
+  static const Color userNameFontColor = Color(0xFF2A2A2A);
+
+  //drop down border color
+  static const Color dropdownBorderColor = Color(0xFF636578);
+
+  //text field border color
+  static const Color textFieldBorderColor = Color(0xFF828393);
+
+  //text field hint color
+  static const Color textFieldHintColor = Color(0xFF828393);
 }
