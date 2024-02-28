@@ -11,8 +11,7 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
+class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, dynamic>> data = [
     {
       'title': 'Daily Scrum Meeting',
@@ -44,49 +43,8 @@ class _HomeScreenState extends State<HomeScreen>
       'priority': 'High',
       "status": "pending"
     },
-    {
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "completed"
-    },
-    {
-      'title': 'User Interview',
-      'date': '2024-02-25',
-      'priority': 'Low',
-      "status": "pending"
-    },
-    {
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "completed"
-    },
-    {
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'title': 'User Interview',
-      'date': '2024-02-25',
-      'priority': 'Low',
-      "status": "pending"
-    },
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,12 +85,18 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 29),
-                  child: Container(
+                  child: SizedBox(
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height - 50,
                     child: TabBarView(children: <Widget>[
-                      TaskList(data: data),
-                      TaskList(data: data),
+                      TaskList(
+                          data: data
+                              .where((task) => task['status'] == 'pending')
+                              .toList()),
+                      TaskList(
+                          data: data
+                              .where((task) => task['status'] == 'completed')
+                              .toList()),
                     ]),
                   ),
                 ),
