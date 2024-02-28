@@ -13,4 +13,15 @@ class AppStrings {
 
   // date filter button text
   static const String dateFilterButtonText = "Date";
+
+  //priority dropdown list values
+  static List<String> priorityListItems = [
+    'All',
+    'High',
+    'Medium',
+    'Low',
+  ];
+
+  //priority dropdown button text
+  static const String dropDownButtonText = "Priority";
 }

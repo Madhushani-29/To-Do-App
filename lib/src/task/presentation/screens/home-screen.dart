@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:todo/core/constants/color.dart';
@@ -21,34 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
       "status": "completed"
     },
     {
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'title': 'User Interview',
-      'date': '2024-02-25',
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
       'priority': 'Low',
-      "status": "completed"
-    },
-    {
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
       "status": "pending"
-    },
-    {
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "completed"
     },
     {
       'title': 'Review Project Requirements',
@@ -59,52 +36,12 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'title': 'Team Discussion',
       'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'title': 'User Interview',
-      'date': '2024-02-25',
-      'priority': 'Low',
-      "status": "completed"
-    },
-    {
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "completed"
-    },
-    {
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'title': 'User Interview',
-      'date': '2024-02-25',
-      'priority': 'Low',
-      "status": "completed"
-    },
-    {
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
       'priority': 'High',
       "status": "pending"
     },
   ];
+
+  String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +64,84 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 Row(
                   children: [
+                    DropdownButtonHideUnderline(
+                      child: DropdownButton2<String>(
+                        isExpanded: true,
+                        hint: const Expanded(
+                          child: Text(
+                            AppStrings.dropDownButtonText,
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: AppColors.buttonTextColor,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        items: AppStrings.priorityListItems
+                            .map((String item) => DropdownMenuItem<String>(
+                                  value: item,
+                                  child: Text(
+                                    item,
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.buttonTextColor,
+                                    ),
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ))
+                            .toList(),
+                        value: selectedValue,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedValue = value;
+                          });
+                        },
+                        buttonStyleData: ButtonStyleData(
+                          height: 23,
+                          width: 80,
+                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(
+                              color: AppColors.dropdownBorderColor,
+                            ),
+                            color: AppColors.primaryButtonBackgroundColor,
+                          ),
+                          elevation: 2,
+                        ),
+                        iconStyleData: const IconStyleData(
+                          icon: Icon(
+                            Icons.arrow_drop_down_sharp,
+                          ),
+                          iconSize: 12,
+                          iconEnabledColor: AppColors.buttonIconColor,
+                          iconDisabledColor: AppColors.buttonIconColor,
+                        ),
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: 150,
+                          width: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: AppColors.primaryButtonBackgroundColor,
+                          ),
+                          offset: const Offset(0, 0),
+                          scrollbarTheme: ScrollbarThemeData(
+                            radius: const Radius.circular(0),
+                            thickness: MaterialStateProperty.all(5),
+                            thumbVisibility: MaterialStateProperty.all(true),
+                          ),
+                        ),
+                        menuItemStyleData: const MenuItemStyleData(
+                          height: 20,
+                          padding: EdgeInsets.only(left: 5, right: 5),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     SizedBox(
                       height: 23,
                       width: 90,
