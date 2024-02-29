@@ -4,7 +4,7 @@ import 'package:buttons_tabbar/buttons_tabbar.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/widgets/home-appbar.dart';
-import 'package:todo/src/task/presentation/widgets/task-list.dart';
+import 'package:todo/src/task/presentation/widgets/task-tile.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,24 +16,28 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, dynamic>> data = [
     {
+      'taskID': '1',
       'title': 'Daily Scrum Meeting',
       'date': '2024-02-26',
       'priority': 'High',
       "status": "completed"
     },
     {
+      'taskID': '2',
       'title': 'Daily Scrum Meeting',
       'date': '2024-02-26',
       'priority': 'Low',
       "status": "pending"
     },
     {
+      'taskID': '3',
       'title': 'Review Project Requirements',
       'date': '2024-02-27',
       'priority': 'Medium',
       "status": "completed"
     },
     {
+      'taskID': '4',
       'title': 'Team Discussion',
       'date': '2024-02-22',
       'priority': 'High',
@@ -45,13 +49,19 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> completedTasks =
+        data.where((task) => task['status'] == 'completed').toList();
+
+    final List<Map<String, dynamic>> pendingTasks =
+        data.where((task) => task['status'] == 'pending').toList();
+
     return Scaffold(
-      appBar: HomeAppBar(),
+      appBar: const HomeAppBar(),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 29, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 29, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -139,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     SizedBox(
@@ -216,14 +226,30 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: double.infinity,
                     height: MediaQuery.of(context).size.height - 193,
                     child: TabBarView(children: <Widget>[
-                      TaskList(
-                          data: data
-                              .where((task) => task['status'] == 'pending')
-                              .toList()),
-                      TaskList(
-                          data: data
-                              .where((task) => task['status'] == 'completed')
-                              .toList()),
+                      ListView.builder(
+                        itemCount: pendingTasks.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var task = data[index];
+                          return TaskTile(
+                              taskID: task["taskID"],
+                              title: task["title"],
+                              date: task["date"],
+                              priority: task["priority"],
+                              status: task["priority"]);
+                        },
+                      ),
+                      ListView.builder(
+                        itemCount: completedTasks.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var task = data[index];
+                          return TaskTile(
+                              taskID: task["taskID"],
+                              title: task["title"],
+                              date: task["date"],
+                              priority: task["priority"],
+                              status: task["priority"]);
+                        },
+                      ),
                     ]),
                   ),
                 ),
