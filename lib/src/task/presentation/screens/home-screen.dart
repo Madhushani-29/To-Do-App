@@ -1,6 +1,8 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:buttons_tabbar/buttons_tabbar.dart';
+import 'package:flutter/widgets.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/widgets/home-appbar.dart';
@@ -15,6 +17,90 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final List<Map<String, dynamic>> data = [
+    {
+      'taskID': '1',
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'High',
+      "status": "completed"
+    },
+    {
+      'taskID': '2',
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'Low',
+      "status": "pending"
+    },
+    {
+      'taskID': '3',
+      'title': 'Review Project Requirements',
+      'date': '2024-02-27',
+      'priority': 'Medium',
+      "status": "completed"
+    },
+    {
+      'taskID': '4',
+      'title': 'Team Discussion',
+      'date': '2024-02-22',
+      'priority': 'High',
+      "status": "pending"
+    },
+    {
+      'taskID': '1',
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'High',
+      "status": "completed"
+    },
+    {
+      'taskID': '2',
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'Low',
+      "status": "pending"
+    },
+    {
+      'taskID': '3',
+      'title': 'Review Project Requirements',
+      'date': '2024-02-27',
+      'priority': 'Medium',
+      "status": "completed"
+    },
+    {
+      'taskID': '4',
+      'title': 'Team Discussion',
+      'date': '2024-02-22',
+      'priority': 'High',
+      "status": "pending"
+    },
+    {
+      'taskID': '1',
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'High',
+      "status": "completed"
+    },
+    {
+      'taskID': '2',
+      'title': 'Daily Scrum Meeting',
+      'date': '2024-02-26',
+      'priority': 'Low',
+      "status": "pending"
+    },
+    {
+      'taskID': '3',
+      'title': 'Review Project Requirements',
+      'date': '2024-02-27',
+      'priority': 'Medium',
+      "status": "completed"
+    },
+    {
+      'taskID': '4',
+      'title': 'Team Discussion',
+      'date': '2024-02-22',
+      'priority': 'High',
+      "status": "pending"
+    },
     {
       'taskID': '1',
       'title': 'Daily Scrum Meeting',
@@ -124,8 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           Icons.arrow_drop_down_sharp,
                         ),
                         iconSize: 12,
-                        iconEnabledColor: AppColors.buttonIconColor,
-                        iconDisabledColor: AppColors.buttonIconColor,
+                        iconEnabledColor: AppColors.primaryButtonIconColor,
+                        iconDisabledColor: AppColors.primaryButtonIconColor,
                       ),
                       dropdownStyleData: DropdownStyleData(
                         maxHeight: 150,
@@ -167,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       icon: const Icon(
                         Icons.calendar_month_outlined,
                         size: 12,
-                        color: AppColors.buttonIconColor,
+                        color: AppColors.primaryButtonIconColor,
                       ),
                       label: const Text(
                         AppStrings.dateFilterButtonText,
@@ -221,7 +307,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: const EdgeInsets.only(left: 29, right: 29, top: 15),
                 child: SizedBox(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height - 320.5,
+                  height: MediaQuery.of(context).size.height - 250,
                   child: TabBarView(children: <Widget>[
                     ListView.builder(
                       itemCount: pendingTasks.length,
@@ -248,6 +334,35 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                     ),
                   ]),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Container(
+          height: 57,
+          color: AppColors.primaryBackgroundColor,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 27.5),
+                child: Divider(
+                  thickness: 2,
+                  color: AppColors.dividerColor,
+                ),
+              ),
+              Center(
+                child: FloatingActionButton(
+                  backgroundColor: AppColors.secondaryButtonBackgroundColor,
+                  onPressed: () {
+                    // Add your onPressed code here!
+                  },
+                  child: const Icon(
+                    Icons.add,
+                    size: 35,
+                    color: AppColors.secondaryButtonIconColor,
+                  ),
                 ),
               ),
             ],

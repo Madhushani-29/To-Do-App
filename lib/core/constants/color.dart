@@ -44,7 +44,7 @@ class AppColors {
   static const Color buttonTextColor = Color(0xFF636578);
 
   //button icon color
-  static const Color buttonIconColor = Color(0xFF636578);
+  static const Color primaryButtonIconColor = Color(0xFF636578);
 
   //text field border color
   static const Color textFieldBorderColor = Color(0xFF828393);
@@ -61,6 +61,12 @@ class AppColors {
   // button background color
   static const Color primaryButtonBackgroundColor = Color(0xffffffff);
 
-  // bottom navigation bar top border color
-  static const Color bottomVacBarTopBorderColor = Color(0x80d9d9d9);
+  // divider color
+  static const Color dividerColor = Color(0x80d9d9d9);
+
+  // button icon color-white
+  static const Color secondaryButtonIconColor = Color(0xffffffff);
+
+  // button background color-purple
+  static const Color secondaryButtonBackgroundColor = Color(0xff643FDB);
 }
