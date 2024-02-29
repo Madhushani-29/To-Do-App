@@ -161,16 +161,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   DropdownButtonHideUnderline(
                     child: DropdownButton2<String>(
                       isExpanded: true,
-                      hint: const Expanded(
-                        child: Text(
-                          AppStrings.dropDownButtonText,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.buttonTextColor,
-                          ),
-                          overflow: TextOverflow.ellipsis,
+                      hint: const Text(
+                        AppStrings.dropDownButtonText,
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.buttonTextColor,
                         ),
+                        overflow: TextOverflow.ellipsis,
                       ),
                       items: AppStrings.priorityListItems
                           .map((String item) => DropdownMenuItem<String>(
