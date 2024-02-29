@@ -60,4 +60,7 @@ class AppColors {
 
   // button background color
   static const Color primaryButtonBackgroundColor = Color(0xffffffff);
+
+  // bottom navigation bar top border color
+  static const Color bottomVacBarTopBorderColor = Color(0x80d9d9d9);
 }

@@ -56,208 +56,220 @@ class _HomeScreenState extends State<HomeScreen> {
         data.where((task) => task['status'] == 'pending').toList();
 
     return Scaffold(
-      appBar: const HomeAppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 29, vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  AppStrings.homeTitle,
-                  style: TextStyle(
-                      color: AppColors.pageTitleFontColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700),
-                ),
-                Row(
-                  children: [
-                    DropdownButtonHideUnderline(
-                      child: DropdownButton2<String>(
-                        isExpanded: true,
-                        hint: const Expanded(
-                          child: Text(
-                            AppStrings.dropDownButtonText,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.buttonTextColor,
+        appBar: const HomeAppBar(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 29, vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    AppStrings.homeTitle,
+                    style: TextStyle(
+                        color: AppColors.pageTitleFontColor,
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700),
+                  ),
+                  Row(
+                    children: [
+                      DropdownButtonHideUnderline(
+                        child: DropdownButton2<String>(
+                          isExpanded: true,
+                          hint: const Expanded(
+                            child: Text(
+                              AppStrings.dropDownButtonText,
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.buttonTextColor,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
-                            overflow: TextOverflow.ellipsis,
                           ),
-                        ),
-                        items: AppStrings.priorityListItems
-                            .map((String item) => DropdownMenuItem<String>(
-                                  value: item,
-                                  child: Text(
-                                    item,
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.buttonTextColor,
+                          items: AppStrings.priorityListItems
+                              .map((String item) => DropdownMenuItem<String>(
+                                    value: item,
+                                    child: Text(
+                                      item,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColors.buttonTextColor,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ))
-                            .toList(),
-                        value: selectedValue,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedValue = value;
-                          });
-                        },
-                        buttonStyleData: ButtonStyleData(
-                          height: 23,
-                          width: 80,
-                          padding: const EdgeInsets.only(left: 5, right: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            border: Border.all(
-                              color: AppColors.dropdownBorderColor,
+                                  ))
+                              .toList(),
+                          value: selectedValue,
+                          onChanged: (value) {
+                            setState(() {
+                              selectedValue = value;
+                            });
+                          },
+                          buttonStyleData: ButtonStyleData(
+                            height: 23,
+                            width: 80,
+                            padding: const EdgeInsets.only(left: 5, right: 5),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              border: Border.all(
+                                color: AppColors.dropdownBorderColor,
+                              ),
+                              color: AppColors.primaryButtonBackgroundColor,
                             ),
-                            color: AppColors.primaryButtonBackgroundColor,
+                            elevation: 2,
                           ),
-                          elevation: 2,
-                        ),
-                        iconStyleData: const IconStyleData(
-                          icon: Icon(
-                            Icons.arrow_drop_down_sharp,
+                          iconStyleData: const IconStyleData(
+                            icon: Icon(
+                              Icons.arrow_drop_down_sharp,
+                            ),
+                            iconSize: 12,
+                            iconEnabledColor: AppColors.buttonIconColor,
+                            iconDisabledColor: AppColors.buttonIconColor,
                           ),
-                          iconSize: 12,
-                          iconEnabledColor: AppColors.buttonIconColor,
-                          iconDisabledColor: AppColors.buttonIconColor,
-                        ),
-                        dropdownStyleData: DropdownStyleData(
-                          maxHeight: 150,
-                          width: 80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: AppColors.primaryButtonBackgroundColor,
+                          dropdownStyleData: DropdownStyleData(
+                            maxHeight: 150,
+                            width: 80,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5),
+                              color: AppColors.primaryButtonBackgroundColor,
+                            ),
+                            offset: const Offset(0, 0),
+                            scrollbarTheme: ScrollbarThemeData(
+                              radius: const Radius.circular(0),
+                              thickness: MaterialStateProperty.all(5),
+                              thumbVisibility: MaterialStateProperty.all(true),
+                            ),
                           ),
-                          offset: const Offset(0, 0),
-                          scrollbarTheme: ScrollbarThemeData(
-                            radius: const Radius.circular(0),
-                            thickness: MaterialStateProperty.all(5),
-                            thumbVisibility: MaterialStateProperty.all(true),
+                          menuItemStyleData: const MenuItemStyleData(
+                            height: 20,
+                            padding: EdgeInsets.only(left: 5, right: 5),
                           ),
-                        ),
-                        menuItemStyleData: const MenuItemStyleData(
-                          height: 20,
-                          padding: EdgeInsets.only(left: 5, right: 5),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      height: 23,
-                      width: 90,
-                      child: ElevatedButton.icon(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              AppColors.primaryButtonBackgroundColor,
-                          textStyle: const TextStyle(fontSize: 14),
-                          shape: RoundedRectangleBorder(
-                            side: const BorderSide(
-                                color: AppColors.buttonBorderColor, width: 1),
-                            borderRadius: BorderRadius.circular(5),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      SizedBox(
+                        height: 23,
+                        width: 90,
+                        child: ElevatedButton.icon(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                AppColors.primaryButtonBackgroundColor,
+                            textStyle: const TextStyle(fontSize: 14),
+                            shape: RoundedRectangleBorder(
+                              side: const BorderSide(
+                                  color: AppColors.buttonBorderColor, width: 1),
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                          ),
+                          icon: const Icon(
+                            Icons.calendar_month_outlined,
+                            size: 12,
+                            color: AppColors.buttonIconColor,
+                          ),
+                          label: const Text(
+                            AppStrings.dateFilterButtonText,
+                            style: TextStyle(
+                                color: AppColors.buttonTextColor,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
-                        icon: const Icon(
-                          Icons.calendar_month_outlined,
-                          size: 12,
-                          color: AppColors.buttonIconColor,
-                        ),
-                        label: const Text(
-                          AppStrings.dateFilterButtonText,
-                          style: TextStyle(
-                              color: AppColors.buttonTextColor,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w400),
-                        ),
                       ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            DefaultTabController(
+              length: 2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    child: ButtonsTabBar(
+                      physics: const BouncingScrollPhysics(),
+                      contentPadding: const EdgeInsets.only(
+                        right: 10,
+                      ),
+                      backgroundColor: AppColors.primaryBackgroundColor,
+                      labelStyle: const TextStyle(
+                        backgroundColor: AppColors.primaryBackgroundColor,
+                        color: AppColors.activeTabFontColor,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      unselectedLabelStyle: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.black,
+                        backgroundColor: AppColors.primaryBackgroundColor,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      unselectedBackgroundColor:
+                          AppColors.primaryBackgroundColor,
+                      tabs: const [
+                        Tab(
+                          text: AppStrings.tabTitleTodo,
+                        ),
+                        Tab(text: AppStrings.tabTitleCompleted)
+                      ],
                     ),
-                  ],
-                )
-              ],
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 29, right: 29, top: 15),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: MediaQuery.of(context).size.height - 255.5,
+                      child: TabBarView(children: <Widget>[
+                        ListView.builder(
+                          itemCount: pendingTasks.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var task = data[index];
+                            return TaskTile(
+                                taskID: task["taskID"],
+                                title: task["title"],
+                                date: task["date"],
+                                priority: task["priority"],
+                                status: task["priority"]);
+                          },
+                        ),
+                        ListView.builder(
+                          itemCount: completedTasks.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            var task = data[index];
+                            return TaskTile(
+                                taskID: task["taskID"],
+                                title: task["title"],
+                                date: task["date"],
+                                priority: task["priority"],
+                                status: task["priority"]);
+                          },
+                        ),
+                      ]),
+                    ),
+                  ),
+                ],
+              ),
+            )
+          ],
+        ),
+        bottomNavigationBar: Container(
+          height: 63,
+          decoration: const BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: AppColors.bottomVacBarTopBorderColor,
+                width: 2,
+              ),
             ),
           ),
-          DefaultTabController(
-            length: 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: ButtonsTabBar(
-                    physics: const BouncingScrollPhysics(),
-                    contentPadding: const EdgeInsets.only(
-                      right: 10,
-                    ),
-                    backgroundColor: AppColors.primaryBackgroundColor,
-                    labelStyle: const TextStyle(
-                      backgroundColor: AppColors.primaryBackgroundColor,
-                      color: AppColors.activeTabFontColor,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    unselectedLabelStyle: const TextStyle(
-                      fontSize: 14,
-                      color: Colors.black,
-                      backgroundColor: AppColors.primaryBackgroundColor,
-                      fontWeight: FontWeight.w500,
-                    ),
-                    unselectedBackgroundColor: AppColors.primaryBackgroundColor,
-                    tabs: const [
-                      Tab(
-                        text: AppStrings.tabTitleTodo,
-                      ),
-                      Tab(text: AppStrings.tabTitleCompleted)
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 29, right: 29, top: 15),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height - 193,
-                    child: TabBarView(children: <Widget>[
-                      ListView.builder(
-                        itemCount: pendingTasks.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var task = data[index];
-                          return TaskTile(
-                              taskID: task["taskID"],
-                              title: task["title"],
-                              date: task["date"],
-                              priority: task["priority"],
-                              status: task["priority"]);
-                        },
-                      ),
-                      ListView.builder(
-                        itemCount: completedTasks.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          var task = data[index];
-                          return TaskTile(
-                              taskID: task["taskID"],
-                              title: task["title"],
-                              date: task["date"],
-                              priority: task["priority"],
-                              status: task["priority"]);
-                        },
-                      ),
-                    ]),
-                  ),
-                ),
-              ],
-            ),
-          )
-        ],
-      ),
-    );
+        ));
   }
 }
