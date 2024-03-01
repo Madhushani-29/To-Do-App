@@ -12,7 +12,7 @@ class CreateTodo {
     this.todo,
   );
 
-  Future<Either<Failure, void>> call() async {
+  Future<Either<Failure, void>> call(Todo todo) async {
     return repository.createTodo(todo);
   }
 }

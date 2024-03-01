@@ -9,7 +9,7 @@ class DeleteTodo {
 
   DeleteTodo(this.repository, this.id);
 
-  Future<Either<Failure, bool>> call() async {
+  Future<Either<Failure, bool>> call(int id) async {
     return repository.deleteTodo(id);
   }
 }
