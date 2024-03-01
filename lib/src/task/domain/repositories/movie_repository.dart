@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:todo/core/errors/server-failure.dart';
+import 'package:todo/core/errors/server_failure.dart';
 import 'package:todo/src/task/domain/entities/todo.dart';
 
 abstract class MovieRepository {
