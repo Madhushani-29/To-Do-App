@@ -2,10 +2,10 @@
 import 'package:dartz/dartz.dart';
 import 'package:todo/core/errors/server_failure.dart';
 import 'package:todo/src/task/domain/entities/todo.dart';
-import 'package:todo/src/task/domain/repositories/movie_repository.dart';
+import 'package:todo/src/task/domain/repositories/todo_repository.dart';
 
 class UpdateTodo {
-  final MovieRepository repository;
+  final TodoRepository repository;
   final Todo todo;
   UpdateTodo(
     this.repository,
