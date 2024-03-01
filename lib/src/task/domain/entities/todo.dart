@@ -1,13 +1,13 @@
 import 'package:equatable/equatable.dart';
 
-class todo extends Equatable {
+class Todo extends Equatable {
   final int id;
   final String title;
   final String date;
   final String status;
   final String priority;
 
-  todo(
+  Todo(
       {required this.id,
       required this.title,
       required this.date,
