@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:todo/src/task/data/models/todo-model.dart';
 
 class Todo extends Equatable {
   final int id;
@@ -13,6 +14,16 @@ class Todo extends Equatable {
       required this.date,
       required this.status,
       required this.priority});
+
+  TodoModel toModel() {
+    return TodoModel(
+      id: id,
+      title: title,
+      date: date,
+      status: status,
+      priority: priority,
+    );
+  }
 
   @override
   List<Object?> get props => [id, title, date, status, priority];
