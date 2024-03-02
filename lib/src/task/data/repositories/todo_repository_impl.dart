@@ -10,13 +10,23 @@ class TodoRepositoryImpl implements TodoRepository {
 
   TodoRepositoryImpl({required this.remoteDataSource});
   @override
-  Future<Either<Failure, void>> createTodo(Todo todo) {
-    throw UnimplementedError();
+  Future<Either<Failure, void>> createTodo(Todo todo) async {
+    try {
+      await remoteDataSource.createTodo(todo.toModel());
+      return const Right(null);
+    } catch (e) {
+      return Left(ServerFailure("Server Failure"));
+    }
   }
 
   @override
-  Future<Either<Failure, bool>> deleteTodo(int id) {
-    throw UnimplementedError();
+  Future<Either<Failure, bool>> deleteTodo(int id) async {
+    try {
+      final bool isDeleted = await remoteDataSource.deleteTodo(id);
+      return Right(isDeleted);
+    } catch (e) {
+      return Left(ServerFailure("Server Failure"));
+    }
   }
 
   @override
@@ -36,7 +46,7 @@ class TodoRepositoryImpl implements TodoRepository {
   Future<Either<Failure, void>> updateTodo(Todo todo) async {
     try {
       await remoteDataSource.updateTodo(todo.toModel());
-      return Right(null);
+      return const Right(null);
     } catch (e) {
       return Left(ServerFailure("Server Failure"));
     }
