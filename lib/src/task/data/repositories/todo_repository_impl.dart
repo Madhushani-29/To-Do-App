@@ -42,7 +42,6 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  @override
   Future<Either<ServerFailure, void>> updateTodo(Todo todo) async {
     try {
       await remoteDataSource.updateTodo(todo.toModel());

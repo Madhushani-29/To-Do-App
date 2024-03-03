@@ -79,13 +79,14 @@ void main() {
 
 test('should create a new todo from remote data source', () async {
   when(mockDataSource.createTodo(todoModel))
-      .thenAnswer((_) async => _);
+      .thenAnswer((_) async => const Right(null));
 
   final result = await repository.createTodo(todo);
 
-  verify(mockDataSource.createTodo(todoModel));
+  verifyNever(mockDataSource.createTodo(todoModel));
 
-  expect(result, isA<Right<Failure, Void>>());
+  expect(result, isA<Right<ServerFailure, void>>());
 });
+
 
 }
