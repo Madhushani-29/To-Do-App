@@ -10,7 +10,7 @@ class TodoRepositoryImpl implements TodoRepository {
 
   TodoRepositoryImpl({required this.remoteDataSource});
   @override
-  Future<Either<Failure, void>> createTodo(Todo todo) async {
+  Future<Either<ServerFailure, void>> createTodo(Todo todo) async {
     try {
       await remoteDataSource.createTodo(todo.toModel());
       return const Right(null);
@@ -20,7 +20,7 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> deleteTodo(int id) async {
+  Future<Either<ServerFailure, bool>> deleteTodo(int id) async {
     try {
       final bool isDeleted = await remoteDataSource.deleteTodo(id);
       return Right(isDeleted);
@@ -30,7 +30,7 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<Failure, List<Todo>>> getAllTodo() async {
+  Future<Either<ServerFailure, List<Todo>>> getAllTodo() async {
     try {
       final List<TodoModel> todoModels = await remoteDataSource.getAllTodo();
       final List<Todo> todos =
@@ -43,7 +43,7 @@ class TodoRepositoryImpl implements TodoRepository {
 
   @override
   @override
-  Future<Either<Failure, void>> updateTodo(Todo todo) async {
+  Future<Either<ServerFailure, void>> updateTodo(Todo todo) async {
     try {
       await remoteDataSource.updateTodo(todo.toModel());
       return const Right(null);
