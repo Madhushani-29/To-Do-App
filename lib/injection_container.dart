@@ -22,7 +22,7 @@ void init() {
 
   //Use cases
   getIt.registerLazySingleton(() => CreateTodo(getIt<TodoRepository>(), Todo(id: '', date: '', status: '', priority: '', title: '')));
-  //getIt.registerLazySingleton(() => GetTrendingMovies(getIt()));
+  //getIt.registerLazySingleton(() => all(getIt<TodoRepository>()));
   //getIt.registerLazySingleton(() => SearchMovies(getIt()));
   //It ensures that only one instance of GetPopularMovies exists in the application
   //instance is created only when it is first requested
