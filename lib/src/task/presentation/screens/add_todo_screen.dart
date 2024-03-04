@@ -15,9 +15,15 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
   String? _date;
   String? _priority;
 
-  Future createToDo(Map<String, dynamic> todoData) async {
-    await FirebaseFirestore.instance.collection("todos").add(todoData);
-  }
+Future createToDo(Map<String, dynamic> todoData) async {
+  await FirebaseFirestore.instance.collection("todos").add(todoData);
+
+  final querySnapshot = await FirebaseFirestore.instance.collection('todos').get();
+  querySnapshot.docs.forEach((doc) {
+    print(doc.data()); // This will print the data of each document
+  });
+}
+
 
   @override
   Widget build(BuildContext context) {
