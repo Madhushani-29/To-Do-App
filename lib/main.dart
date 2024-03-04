@@ -5,6 +5,7 @@ import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_blo
 import 'package:todo/src/task/presentation/screens/home-screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   init();
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
           useMaterial3: true,
         ),
+        localizationsDelegates: GlobalMaterialLocalizations.delegates,
+        supportedLocales: const [
+          Locale('en', ''),
+        ],
         home: const HomeScreen(),
       ),
     );
