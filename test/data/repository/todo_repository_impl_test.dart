@@ -25,14 +25,14 @@ void main() {
 
   final todoModelList = [
     TodoModel(
-      id: 1,
+      id: "1",
       title: "Documentation",
       date: '2024-03-20',
       status: 'completed',
       priority: 'high',
     ),
     TodoModel(
-      id: 1,
+      id: "1",
       title: "Documentation",
       date: '2024-03-20',
       status: 'completed',
@@ -41,7 +41,7 @@ void main() {
   ];
 
   final todoModel = TodoModel(
-    id: 1,
+    id: "1",
     title: "Documentation",
     date: '2024-03-20',
     status: 'completed',
@@ -49,7 +49,7 @@ void main() {
   );
 
   final todo = Todo(
-    id: 1,
+    id: "1",
     title: "Documentation",
     date: '2024-03-20',
     status: 'completed',

@@ -117,7 +117,7 @@ class MockTodoRepository extends _i1.Mock implements _i3.TodoRepository {
       ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, bool>> deleteTodo(int? id) =>
+  _i4.Future<_i2.Either<_i5.Failure, bool>> deleteTodo(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteTodo,

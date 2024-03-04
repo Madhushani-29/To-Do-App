@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/injection_container.dart';
+import 'package:todo/src/task/presentation/Models/todo.dart';
+import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_bloc.dart';
+import 'package:todo/src/task/presentation/bloc/delete_todo_bloc/delete_todo_bloc.dart';
+import 'package:todo/src/task/presentation/bloc/get_todo_bloc/get_todo_bloc.dart';
+import 'package:todo/src/task/presentation/bloc/update_todo_bloc/update_todo_bloc.dart';
 import 'package:todo/src/task/presentation/screens/home-screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:get_it/get_it.dart';
 
 void main() async {
+  init();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -15,14 +24,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'ToDo App',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
-        useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CreateTodoBloc>(
+          create: (context) => getIt<CreateTodoBloc>(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'ToDo App',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
+          useMaterial3: true,
+        ),
+        home: const HomeScreen(),
       ),
-      home: const HomeScreen(),
     );
   }
 }

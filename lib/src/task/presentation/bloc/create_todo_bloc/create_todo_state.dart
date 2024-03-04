@@ -1,10 +1,17 @@
 part of 'create_todo_bloc.dart';
 
-sealed class CreateTodoState extends Equatable {
-  const CreateTodoState();
-  
-  @override
-  List<Object> get props => [];
+sealed class CreateTodoState {}
+
+class CreateTodoInitial extends CreateTodoState {}
+
+class TodoCreatedSuccessful extends CreateTodoState {
+  final String message;
+
+  TodoCreatedSuccessful({required this.message});
 }
 
-final class CreateTodoInitial extends CreateTodoState {}
+class TodoCreateFailed extends CreateTodoState {
+  final String message;
+
+  TodoCreateFailed({required this.message});
+}

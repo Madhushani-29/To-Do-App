@@ -60,7 +60,7 @@ class MockTodoRemoteDataSource extends _i1.Mock
       ) as _i3.Future<void>);
 
   @override
-  _i3.Future<bool> deleteTodo(int? id) => (super.noSuchMethod(
+  _i3.Future<bool> deleteTodo(String? id) => (super.noSuchMethod(
         Invocation.method(
           #deleteTodo,
           [id],

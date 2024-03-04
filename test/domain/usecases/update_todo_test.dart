@@ -16,7 +16,7 @@ void main() {
   late MockTodoRepository mockTodoRepository;
 
   Todo sampleTodo = Todo(
-    id: 1,
+    id: "1",
     title: "Documentation",
     date: '2024-03-20',
     status: 'completed',

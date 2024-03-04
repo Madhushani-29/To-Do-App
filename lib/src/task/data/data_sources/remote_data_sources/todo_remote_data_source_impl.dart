@@ -3,10 +3,10 @@ import 'package:todo/core/errors/server_exception.dart';
 import 'package:todo/src/task/data/models/todo-model.dart';
 import 'package:todo/src/task/data/data_sources/todo_remote_data_source.dart';
 
-class FirebaseTodoRemoteDataSource implements TodoRemoteDataSource {
+class FirebaseTodoRemoteDataSourceImpl implements TodoRemoteDataSource {
   final FirebaseFirestore firestore;
 
-  FirebaseTodoRemoteDataSource({required this.firestore});
+  FirebaseTodoRemoteDataSourceImpl({required this.firestore});
 
   @override
   Future<List<TodoModel>> getAllTodo() async {

@@ -14,7 +14,7 @@ void main() {
   late DeleteTodo usecase;
   late MockTodoRepository mockTodoRepository;
 
-  final int id = 1;
+  final String id = "2";
 
   final bool res = true;
 

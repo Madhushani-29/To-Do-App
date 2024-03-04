@@ -1,8 +1,11 @@
 part of 'create_todo_bloc.dart';
 
-sealed class CreateTodoEvent extends Equatable {
-  const CreateTodoEvent();
+sealed class CreateTodoEvent {}
 
-  @override
-  List<Object> get props => [];
+class CreateTodos extends CreateTodoEvent {
+  final TodoData todo;
+
+  CreateTodos({required this.todo});
+    @override
+  List<Object?> get props => [todo];
 }

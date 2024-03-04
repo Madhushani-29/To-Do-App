@@ -5,7 +5,7 @@ import 'package:todo/src/task/domain/repositories/todo_repository.dart';
 
 class DeleteTodo {
   final TodoRepository repository;
-  final int id;
+  final String id;
 
   DeleteTodo(this.repository, this.id);
 

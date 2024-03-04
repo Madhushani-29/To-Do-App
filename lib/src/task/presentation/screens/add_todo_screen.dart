@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/core/constants/strings.dart';
+import 'package:todo/src/task/presentation/Models/todo.dart';
+import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_bloc.dart';
 
 class TodoCreateScreen extends StatefulWidget {
   const TodoCreateScreen({Key? key}) : super(key: key);
@@ -15,18 +18,9 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
   String? _date;
   String? _priority;
 
-Future createToDo(Map<String, dynamic> todoData) async {
-  await FirebaseFirestore.instance.collection("todos").add(todoData);
-
-  final querySnapshot = await FirebaseFirestore.instance.collection('todos').get();
-  querySnapshot.docs.forEach((doc) {
-    print(doc.data()); // This will print the data of each document
-  });
-}
-
-
   @override
   Widget build(BuildContext context) {
+    final createTodoBloc = BlocProvider.of<CreateTodoBloc>(context);
     return Scaffold(
       appBar: AppBar(),
       body: ListView(
@@ -83,13 +77,14 @@ Future createToDo(Map<String, dynamic> todoData) async {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Map<String, dynamic> todoData = {
-                      "title": _title,
-                      "date": _date,
-                      "priority": _priority,
-                      "status": "pending"
-                    };
-                    createToDo(todoData);
+                    TodoData todo = TodoData(
+                      id: '',
+                      title: _title ?? '',
+                      date: _date ?? '',
+                      priority: _priority ?? '',
+                      status: 'pending',
+                    );
+                    createTodoBloc.add(CreateTodos(todo: todo));
                   },
                   child: const Text("Submit"),
                 ),
