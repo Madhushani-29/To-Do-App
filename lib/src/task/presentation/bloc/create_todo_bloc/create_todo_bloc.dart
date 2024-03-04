@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:todo/src/task/domain/usecases/create_todo.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
 

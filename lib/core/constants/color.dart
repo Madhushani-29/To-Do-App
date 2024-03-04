@@ -69,4 +69,10 @@ class AppColors {
 
   // button background color-purple
   static const Color secondaryButtonBackgroundColor = Color(0xff643FDB);
+
+  // success snackbar color
+  static const Color successSnackBarColor = Color(0xff35CD28);
+
+  // failure snackbar color
+  static const Color failureSnackBarColor = Color(0xffFD0C0C);
 }

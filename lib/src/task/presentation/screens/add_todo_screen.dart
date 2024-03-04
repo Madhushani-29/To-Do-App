@@ -1,6 +1,6 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
 import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_bloc.dart';
@@ -26,12 +26,18 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
         body: BlocConsumer<CreateTodoBloc, CreateTodoState>(
           listener: (context, state) {
             if (state is TodoCreatedSuccessful) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.message)));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.message),
+                backgroundColor: AppColors.successSnackBarColor,
+                showCloseIcon: true,
+              ));
             }
             if (state is TodoCreateFailed) {
-              ScaffoldMessenger.of(context)
-                  .showSnackBar(SnackBar(content: Text(state.message)));
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.message),
+                backgroundColor: AppColors.failureSnackBarColor,
+                showCloseIcon: true,
+              ));
             }
           },
           builder: (context, state) {
