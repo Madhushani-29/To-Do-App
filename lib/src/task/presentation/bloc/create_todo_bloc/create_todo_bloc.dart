@@ -10,6 +10,7 @@ class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
   final CreateTodo createTodo;
   CreateTodoBloc({required this.createTodo}) : super(CreateTodoInitial()) {
     on<CreateTodos>((event, emit) async {
+      emit(CreateTodoLoading());
       final todoData = event.todo;
       final todo = todoData.toEntity();
       final failureOrSuccess = await createTodo(todo);

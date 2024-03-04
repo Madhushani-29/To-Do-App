@@ -4,6 +4,8 @@ sealed class CreateTodoState {}
 
 class CreateTodoInitial extends CreateTodoState {}
 
+class CreateTodoLoading extends CreateTodoState {}
+
 class TodoCreatedSuccessful extends CreateTodoState {
   final String message;
 
