@@ -2,7 +2,7 @@
 import 'package:todo/src/task/domain/entities/todo.dart';
 
 class TodoModel {
-  final String id;
+  String id;
   final String title;
   final String date;
   final String status;

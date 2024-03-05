@@ -1,8 +1,12 @@
+import 'dart:ffi';
+
+import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo/core/errors/server_exception.dart';
+import 'package:todo/core/errors/server_failure.dart';
 import 'package:todo/src/task/data/data_sources/remote_data_sources/todo_remote_data_source_impl.dart';
 import 'package:todo/src/task/data/models/todo-model.dart';
 
@@ -18,11 +22,7 @@ void main() {
     dataSource = FirebaseTodoRemoteDataSourceImpl(firestore: mockFirestore);
   });
 
-  group('createTodo', () {
-    test('should create a todo model when the call to Firestore is successful',
-        () async {
-      // Arrange
-      final todo = TodoModel(
+  final todo = TodoModel(
         id: '1',
         title: 'Todo 1',
         date: '2024-03-04',
@@ -30,14 +30,19 @@ void main() {
         status: 'pending',
       );
 
-      // Act
-      await dataSource.createTodo(todo);
+  group('createTodo', () {
+    test('should create a new todo from remote data source', () async {
+  when(mockFirestore.collection('todos').add(todo.toJson()))
+      .thenAnswer((_) async => );
 
-      // Assert
-      verify(mockFirestore.collection('todos').add(todo.toJson()));
-    });
+  final result = await dataSource.createTodo(todo);
 
-    test('should throw a ServerException when the call to Firestore fails',
+  verifyNever(mockFirestore.collection('todos').add(todo.toJson()));
+
+  expect(result, void());
+});
+
+   /* test('should throw a ServerException when the call to Firestore fails',
         () async {
       // Arrange
       final todo = TodoModel(
@@ -53,6 +58,6 @@ void main() {
       // Act & Assert
       expect(
           () => dataSource.createTodo(todo), throwsA(isA<ServerException>()));
-    });
+    });*/
   });
 }

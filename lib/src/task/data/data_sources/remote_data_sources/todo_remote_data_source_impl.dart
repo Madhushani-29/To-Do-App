@@ -22,11 +22,14 @@ class FirebaseTodoRemoteDataSourceImpl implements TodoRemoteDataSource {
 
   @override
   Future<void> createTodo(TodoModel todo) async {
-    try {
-      await firestore.collection('todos').add(todo.toJson());
-    } catch (e) {
-      throw ServerException(message: 'Failed to create todo in Firestore');
-    }
+    // Add todo to Firestore and get the document reference
+    final DocumentReference documentReference =
+        await firestore.collection('todos').add(todo.toJson());
+    // Get the ID of the added document and assign it to the todo model
+    final String todoId = documentReference.id;
+    todo.id = todoId;
+    // Update the todo in Firestore with the newly assigned ID
+    await documentReference.update({'id': todoId});
   }
 
   @override

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -17,131 +18,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<Map<String, dynamic>> data = [
-    {
-      'taskID': '1',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "completed"
-    },
-    {
-      'taskID': '2',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'Low',
-      "status": "pending"
-    },
-    {
-      'taskID': '3',
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'taskID': '4',
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'taskID': '1',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "completed"
-    },
-    {
-      'taskID': '2',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'Low',
-      "status": "pending"
-    },
-    {
-      'taskID': '3',
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'taskID': '4',
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'taskID': '1',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "completed"
-    },
-    {
-      'taskID': '2',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'Low',
-      "status": "pending"
-    },
-    {
-      'taskID': '3',
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'taskID': '4',
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-    {
-      'taskID': '1',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'High',
-      "status": "completed"
-    },
-    {
-      'taskID': '2',
-      'title': 'Daily Scrum Meeting',
-      'date': '2024-02-26',
-      'priority': 'Low',
-      "status": "pending"
-    },
-    {
-      'taskID': '3',
-      'title': 'Review Project Requirements',
-      'date': '2024-02-27',
-      'priority': 'Medium',
-      "status": "completed"
-    },
-    {
-      'taskID': '4',
-      'title': 'Team Discussion',
-      'date': '2024-02-22',
-      'priority': 'High',
-      "status": "pending"
-    },
-  ];
+  //QuerySnapshot: Represents a snapshot of query results from Firestore.
+  //It contains zero or more DocumentSnapshot objects.
+  //<Map<String, dynamic>>: Indicates that the QuerySnapshot contains maps
+  //where the keys are String and the values are dynamic types
+  final Stream<QuerySnapshot<Map<String, dynamic>>> todosStream =
+      FirebaseFirestore.instance.collection('todos').snapshots();
 
   String? selectedValue;
 
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> completedTasks =
-        data.where((task) => task['status'] == 'completed').toList();
-
-    final List<Map<String, dynamic>> pendingTasks =
-        data.where((task) => task['status'] == 'pending').toList();
-
     return Scaffold(
       appBar: const HomeAppBar(),
       body: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -307,32 +194,62 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: SizedBox(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height - 250,
-                  child: TabBarView(children: <Widget>[
-                    ListView.builder(
-                      itemCount: pendingTasks.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var task = data[index];
-                        return TaskTile(
-                            taskID: task["taskID"],
-                            title: task["title"],
-                            date: task["date"],
-                            priority: task["priority"],
-                            status: task["priority"]);
-                      },
-                    ),
-                    ListView.builder(
-                      itemCount: completedTasks.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        var task = data[index];
-                        return TaskTile(
-                            taskID: task["taskID"],
-                            title: task["title"],
-                            date: task["date"],
-                            priority: task["priority"],
-                            status: task["priority"]);
-                      },
-                    ),
-                  ]),
+                  child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
+                    stream: todosStream,
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (snapshot.data == null ||
+                          snapshot.data!.docs.isEmpty) {
+                        // corrected condition
+                        return Text('No todos found.');
+                      } else {
+                        final todos = snapshot.data!.docs
+                            .map((doc) => doc.data() as Map<String, dynamic>)
+                            .toList();
+                        final completedTasks = todos
+                            .where((task) =>
+                                task['status'] ==
+                                'completed') // corrected property access
+                            .toList();
+                        final pendingTasks = todos
+                            .where((task) =>
+                                task['status'] ==
+                                'pending') // corrected property access
+                            .toList();
+                        return TabBarView(children: <Widget>[
+                          ListView.builder(
+                            itemCount: pendingTasks.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var task = pendingTasks[
+                                  index]; // corrected variable assignment
+                              return TaskTile(
+                                  taskID: task['id'],
+                                  title: task['title'],
+                                  date: task['date'],
+                                  priority: task['priority'],
+                                  status: task['status']);
+                            },
+                          ),
+                          ListView.builder(
+                            itemCount: completedTasks.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              var task = completedTasks[
+                                  index]; // corrected variable assignment
+                              return TaskTile(
+                                  taskID: task['id'],
+                                  title: task['title'],
+                                  date: task['date'],
+                                  priority: task['priority'],
+                                  status: task['status']);
+                            },
+                          ),
+                        ]);
+                      }
+                    },
+                  ),
                 ),
               ),
             ],
