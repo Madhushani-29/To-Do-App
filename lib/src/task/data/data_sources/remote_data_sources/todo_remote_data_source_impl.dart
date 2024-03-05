@@ -9,15 +9,9 @@ class FirebaseTodoRemoteDataSourceImpl implements TodoRemoteDataSource {
   FirebaseTodoRemoteDataSourceImpl({required this.firestore});
 
   @override
-  Future<List<TodoModel>> getAllTodo() async {
-    try {
-      final querySnapshot = await firestore.collection('todos').get();
-      return querySnapshot.docs
-          .map((doc) => TodoModel.fromJson(doc.data()))
-          .toList();
-    } catch (e) {
-      throw ServerException(message: 'Failed to get todos from Firestore');
-    }
+  Stream<List<TodoModel>> getAllTodoStream() {
+    return firestore.collection('todos').snapshots().map((snapshot) =>
+        snapshot.docs.map((doc) => TodoModel.fromJson(doc.data())).toList());
   }
 
   @override

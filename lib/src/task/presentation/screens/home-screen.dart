@@ -219,8 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ListView.builder(
                             itemCount: pendingTasks.length,
                             itemBuilder: (BuildContext context, int index) {
-                              var task = pendingTasks[
-                                  index];
+                              var task = pendingTasks[index];
                               return TaskTile(
                                   taskID: task['id'],
                                   title: task['title'],

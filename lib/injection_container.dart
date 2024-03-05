@@ -7,7 +7,9 @@ import 'package:todo/src/task/data/repositories/todo_repository_impl.dart';
 import 'package:todo/src/task/domain/entities/todo.dart';
 import 'package:todo/src/task/domain/repositories/todo_repository.dart';
 import 'package:todo/src/task/domain/usecases/create_todo.dart';
+import 'package:todo/src/task/domain/usecases/get_all_todo.dart';
 import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_bloc.dart';
+
 final getIt = GetIt.instance;
 
 //init () is responsible for initializing and registering dependencies
@@ -21,8 +23,9 @@ void init() {
   //whenever someone requests an instance of PopularMovieBloc, GetIt will create a new instance
 
   //Use cases
-  getIt.registerLazySingleton(() => CreateTodo(getIt<TodoRepository>(), Todo(id: '', date: '', status: '', priority: '', title: '')));
-  //getIt.registerLazySingleton(() => all(getIt<TodoRepository>()));
+  getIt.registerLazySingleton(() => CreateTodo(getIt<TodoRepository>(),
+      Todo(id: '', date: '', status: '', priority: '', title: '')));
+  getIt.registerLazySingleton(() => GetAllTodo(getIt<TodoRepository>()));
   //getIt.registerLazySingleton(() => SearchMovies(getIt()));
   //It ensures that only one instance of GetPopularMovies exists in the application
   //instance is created only when it is first requested

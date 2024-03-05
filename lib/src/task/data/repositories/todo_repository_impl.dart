@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:todo/core/errors/server_failure.dart';
 import 'package:todo/src/task/data/data_sources/todo_remote_data_source.dart';
-import 'package:todo/src/task/data/models/todo-model.dart';
 import 'package:todo/src/task/domain/entities/todo.dart';
 import 'package:todo/src/task/domain/repositories/todo_repository.dart';
 
@@ -30,14 +29,14 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Future<Either<ServerFailure, List<Todo>>> getAllTodo() async {
+  Stream<Either<ServerFailure, List<Todo>>> getAllTodoStream() async* {
     try {
-      final List<TodoModel> todoModels = await remoteDataSource.getAllTodo();
-      final List<Todo> todos =
-          todoModels.map((model) => model.toEntity()).toList();
-      return Right(todos);
+      yield* remoteDataSource.getAllTodoStream().map((todoModels) {
+        final todos = todoModels.map((model) => model.toEntity()).toList();
+        return Right(todos);
+      });
     } catch (e) {
-      return Left(ServerFailure("Server Failure"));
+      yield Left(ServerFailure("Server Failure"));
     }
   }
 

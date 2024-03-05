@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:todo/src/task/data/models/todo-model.dart';
+import 'package:todo/src/task/presentation/Models/todo.dart';
 
 class Todo extends Equatable {
   final String id;
@@ -17,6 +18,16 @@ class Todo extends Equatable {
 
   TodoModel toModel() {
     return TodoModel(
+      id: id,
+      title: title,
+      date: date,
+      status: status,
+      priority: priority,
+    );
+  }
+
+  TodoData toTodoData() {
+    return TodoData(
       id: id,
       title: title,
       date: date,
