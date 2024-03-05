@@ -210,21 +210,17 @@ class _HomeScreenState extends State<HomeScreen> {
                             .map((doc) => doc.data() as Map<String, dynamic>)
                             .toList();
                         final completedTasks = todos
-                            .where((task) =>
-                                task['status'] ==
-                                'completed') // corrected property access
+                            .where((task) => task['status'] == 'completed')
                             .toList();
                         final pendingTasks = todos
-                            .where((task) =>
-                                task['status'] ==
-                                'pending') // corrected property access
+                            .where((task) => task['status'] == 'pending')
                             .toList();
                         return TabBarView(children: <Widget>[
                           ListView.builder(
                             itemCount: pendingTasks.length,
                             itemBuilder: (BuildContext context, int index) {
                               var task = pendingTasks[
-                                  index]; // corrected variable assignment
+                                  index];
                               return TaskTile(
                                   taskID: task['id'],
                                   title: task['title'],

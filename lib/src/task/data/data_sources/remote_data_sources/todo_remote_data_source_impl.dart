@@ -35,9 +35,9 @@ class FirebaseTodoRemoteDataSourceImpl implements TodoRemoteDataSource {
   @override
   Future<void> updateTodo(TodoModel todo) async {
     try {
-      await firestore
+      await FirebaseFirestore.instance
           .collection('todos')
-          .doc(todo.id.toString())
+          .doc(todo.id)
           .update(todo.toJson());
     } catch (e) {
       throw ServerException(message: 'Failed to update todo in Firestore');

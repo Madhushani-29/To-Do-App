@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/gen/assets.gen.dart';
+import 'package:todo/src/task/presentation/screens/update_todo_screen.dart';
 
 class TaskTile extends StatelessWidget {
   final String taskID;
@@ -40,11 +42,23 @@ class TaskTile extends StatelessWidget {
                     fontSize: 12,
                     fontWeight: FontWeight.w700),
               ),
-              SvgPicture.asset(
-                Assets.icons.updateIcon,
-                color: AppColors.primaryIconColor,
-                width: 15,
-                height: 15,
+              GestureDetector(
+                child: SvgPicture.asset(
+                  Assets.icons.updateIcon,
+                  color: AppColors.primaryIconColor,
+                  width: 15,
+                  height: 15,
+                ),
+                onTap: () => {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => TodoUpdateScreen(
+                            title: title,
+                            date: date,
+                            status: status,
+                            priority: priority,
+                            id: taskID,
+                          )))
+                },
               ),
             ],
           ),
