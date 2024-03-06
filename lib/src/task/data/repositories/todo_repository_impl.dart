@@ -29,18 +29,6 @@ class TodoRepositoryImpl implements TodoRepository {
   }
 
   @override
-  Stream<Either<ServerFailure, List<Todo>>> getAllTodoStream() async* {
-    try {
-      yield* remoteDataSource.getAllTodoStream().map((todoModels) {
-        final todos = todoModels.map((model) => model.toEntity()).toList();
-        return Right(todos);
-      });
-    } catch (e) {
-      yield Left(ServerFailure("Server Failure"));
-    }
-  }
-
-  @override
   Future<Either<ServerFailure, void>> updateTodo(Todo todo) async {
     try {
       await remoteDataSource.updateTodo(todo.toModel());
