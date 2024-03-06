@@ -1,8 +1,8 @@
-part of 'create_todo_bloc.dart';
+part of 'todo_bloc.dart';
 
-sealed class CreateTodoEvent {}
+sealed class TodoEvent {}
 
-class CreateTodos extends CreateTodoEvent {
+class CreateTodos extends TodoEvent {
   final TodoData todo;
 
   CreateTodos({required this.todo});

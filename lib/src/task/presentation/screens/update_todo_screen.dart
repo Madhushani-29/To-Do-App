@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
-import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_bloc.dart';
+import 'package:todo/src/task/presentation/bloc/todo_bloc/todo_bloc.dart';
 
 // ignore: must_be_immutable
 class TodoUpdateScreen extends StatefulWidget {
@@ -49,16 +49,16 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: BlocConsumer<CreateTodoBloc, CreateTodoState>(
+      body: BlocConsumer<TodoBloc, TodoState>(
         listener: (context, state) {
-          if (state is TodoCreatedSuccessful) {
+          if (state is TodoSuccessful) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.message),
               backgroundColor: AppColors.successSnackBarColor,
               showCloseIcon: true,
             ));
           }
-          if (state is TodoCreateFailed) {
+          if (state is TodoFailed) {
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.message),
               backgroundColor: AppColors.failureSnackBarColor,
@@ -67,7 +67,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
           }
         },
         builder: (context, state) {
-          if (state is CreateTodoLoading) {
+          if (state is TodoLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );

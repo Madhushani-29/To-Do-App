@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
-import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_bloc.dart';
+import 'package:todo/src/task/presentation/bloc/todo_bloc/todo_bloc.dart';
 
 class TodoCreateScreen extends StatefulWidget {
   const TodoCreateScreen({Key? key}) : super(key: key);
@@ -20,19 +20,19 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final createTodoBloc = BlocProvider.of<CreateTodoBloc>(context);
+    final createTodoBloc = BlocProvider.of<TodoBloc>(context);
     return Scaffold(
         appBar: AppBar(),
-        body: BlocConsumer<CreateTodoBloc, CreateTodoState>(
+        body: BlocConsumer<TodoBloc, TodoState>(
           listener: (context, state) {
-            if (state is TodoCreatedSuccessful) {
+            if (state is TodoSuccessful) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.message),
                 backgroundColor: AppColors.successSnackBarColor,
                 showCloseIcon: true,
               ));
             }
-            if (state is TodoCreateFailed) {
+            if (state is TodoFailed) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.message),
                 backgroundColor: AppColors.failureSnackBarColor,
@@ -41,7 +41,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
             }
           },
           builder: (context, state) {
-            if (state is CreateTodoLoading) {
+            if (state is TodoLoading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );

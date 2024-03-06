@@ -8,14 +8,14 @@ import 'package:todo/src/task/domain/entities/todo.dart';
 import 'package:todo/src/task/domain/repositories/todo_repository.dart';
 import 'package:todo/src/task/domain/usecases/create_todo.dart';
 import 'package:todo/src/task/domain/usecases/get_all_todo.dart';
-import 'package:todo/src/task/presentation/bloc/create_todo_bloc/create_todo_bloc.dart';
+import 'package:todo/src/task/presentation/bloc/todo_bloc/todo_bloc.dart';
 
 final getIt = GetIt.instance;
 
 //init () is responsible for initializing and registering dependencies
 void init() {
   //Bloc
-  getIt.registerFactory(() => CreateTodoBloc(createTodo: getIt()));
+  getIt.registerFactory(() => TodoBloc(createTodo: getIt()));
   //getIt.registerFactory(() => UpdateTodoBloc(updateTodo: getIt()));
   //getIt.registerFactory(() => DeleteTodoBloc(deleteTodo: getIt()));
   //getIt.registerFactory(() => GetTodoBloc(getTodo: getIt()));

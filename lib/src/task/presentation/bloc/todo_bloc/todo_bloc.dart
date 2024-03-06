@@ -2,21 +2,21 @@ import 'package:bloc/bloc.dart';
 import 'package:todo/src/task/domain/usecases/create_todo.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
 
-part 'create_todo_event.dart';
-part 'create_todo_state.dart';
+part 'todo_event.dart';
+part 'todo_state.dart';
 
-class CreateTodoBloc extends Bloc<CreateTodoEvent, CreateTodoState> {
+class TodoBloc extends Bloc<TodoEvent, TodoState> {
   final CreateTodo createTodo;
-  CreateTodoBloc({required this.createTodo}) : super(CreateTodoInitial()) {
+  TodoBloc({required this.createTodo}) : super(TodoInitial()) {
     on<CreateTodos>((event, emit) async {
-      emit(CreateTodoLoading());
+      emit(TodoLoading());
       final todoData = event.todo;
       final todo = todoData.toEntity();
       final failureOrSuccess = await createTodo(todo);
       failureOrSuccess.fold(
-          (failure) => emit(TodoCreateFailed(message: "Something went wrong")),
+          (failure) => emit(TodoFailed(message: "Something went wrong")),
           (success) => emit(
-              TodoCreatedSuccessful(message: "Todo created successfully")));
+              TodoSuccessful(message: "Todo created successfully")));
     });
   }
 }
