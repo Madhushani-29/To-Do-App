@@ -10,6 +10,9 @@ class AppColors {
   //secondary text color
   static const Color secondaryTextColor = Color(0xFF828393);
 
+  //tertiary text color
+  static const Color tertiaryTextColor = Color(0xFF636578);
+
   //active tab font color
   static const Color activeTabFontColor = Color(0xFF643FDB);
 
