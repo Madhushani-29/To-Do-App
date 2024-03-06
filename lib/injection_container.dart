@@ -15,10 +15,9 @@ final getIt = GetIt.instance;
 //init () is responsible for initializing and registering dependencies
 void init() {
   //Bloc
-  getIt.registerFactory(() => TodoBloc(createTodo: getIt()));
+  getIt.registerFactory(() => TodoBloc(createTodo: getIt(), getAllTodo: getIt()));
   //getIt.registerFactory(() => UpdateTodoBloc(updateTodo: getIt()));
   //getIt.registerFactory(() => DeleteTodoBloc(deleteTodo: getIt()));
-  //getIt.registerFactory(() => GetTodoBloc(getTodo: getIt()));
   //Register the PopularMovieBloc as a factory in GetI
   //whenever someone requests an instance of PopularMovieBloc, GetIt will create a new instance
 
