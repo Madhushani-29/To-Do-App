@@ -158,9 +158,9 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                           });
                         },
                         buttonStyleData: ButtonStyleData(
-                          height: 23,
-                          width: 80,
-                          padding: const EdgeInsets.only(left: 5, right: 5),
+                          height: 45,
+                          width: double.infinity,
+                          padding: const EdgeInsets.only(left: 30, right: 20),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             border: Border.all(
@@ -179,8 +179,8 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                           iconDisabledColor: AppColors.primaryButtonIconColor,
                         ),
                         dropdownStyleData: DropdownStyleData(
-                          maxHeight: 150,
-                          width: 80,
+                          maxHeight: 140,
+                          width: MediaQuery.of(context).size.width - 32,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                             color: AppColors.primaryButtonBackgroundColor,
@@ -193,8 +193,8 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                           ),
                         ),
                         menuItemStyleData: const MenuItemStyleData(
-                          height: 20,
-                          padding: EdgeInsets.only(left: 5, right: 5),
+                          padding: EdgeInsets.only(left: 30, right: 20),
+                          height:30
                         ),
                       ),
                     ),
