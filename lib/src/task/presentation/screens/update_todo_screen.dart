@@ -98,6 +98,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                     autofocus: true,
                     cursorColor: AppColors.textFieldCursorColor,
                     decoration: const InputDecoration(
+                      contentPadding: EdgeInsetsDirectional.only(start: 29),
                       hintText: "Enter title",
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -127,6 +128,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                     autofocus: true,
                     cursorColor: AppColors.textFieldCursorColor,
                     decoration: InputDecoration(
+                      contentPadding: EdgeInsetsDirectional.only(start: 29),
                       hintText: formattedDate,
                       border: const OutlineInputBorder(
                         borderSide: BorderSide(
