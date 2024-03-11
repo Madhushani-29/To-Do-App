@@ -73,8 +73,8 @@ class TaskTile extends StatelessWidget {
                       .collection('todos')
                       .doc(taskID)
                       .update({
-                    'status': "completed"
-                  }); // Update only the 'status' field
+                    'status': status == "completed" ? "pending" : "completed"
+                  });
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(
                       backgroundColor: AppColors.successSnackBarColor,

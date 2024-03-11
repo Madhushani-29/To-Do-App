@@ -70,6 +70,9 @@ class AppColors {
   //text field border color
   static const Color textFieldBorderColor = Color(0xFF828393);
 
+//text field cursor color
+  static const Color textFieldCursorColor = Color(0xFF828393);
+
   //text field hint color
   static const Color textFieldHintColor = Color(0xFF828393);
 

@@ -5,6 +5,7 @@ import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
 import 'package:todo/src/task/presentation/bloc/todo_bloc/todo_bloc.dart';
+import 'package:intl/intl.dart';
 
 class TodoCreateScreen extends StatefulWidget {
   const TodoCreateScreen({Key? key}) : super(key: key);
@@ -18,6 +19,18 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
   String? _title;
   String? _date;
   String? _priority;
+
+  late DateTime now;
+  late DateFormat formatter;
+  late String formattedDate;
+
+  @override
+  void initState() {
+    super.initState();
+    now = DateTime.now();
+    formatter = DateFormat('E, d MMM y', 'en');
+    formattedDate = formatter.format(now);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +71,19 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.always,
-                    maxLength: 20,
-                    decoration: const InputDecoration(hintText: "title"),
+                    style: const TextStyle(fontSize: 14),
+                    autofocus: true,
+                    cursorColor: AppColors.textFieldCursorColor,
+                    decoration: const InputDecoration(
+                      hintText: "Enter title",
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColors.textFieldBorderColor, width: 1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                    ),
                     onChanged: (text) {
                       setState(() {
                         _title = text;
@@ -75,8 +99,19 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                   ),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.always,
-                    maxLength: 20,
-                    decoration: const InputDecoration(hintText: "date"),
+                    style: const TextStyle(fontSize: 14),
+                    autofocus: true,
+                    cursorColor: AppColors.textFieldCursorColor,
+                    decoration: InputDecoration(
+                      hintText: formattedDate,
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColors.textFieldBorderColor, width: 1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                    ),
                     onChanged: (text) {
                       setState(() {
                         _date = text;

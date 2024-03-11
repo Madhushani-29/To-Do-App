@@ -6,6 +6,7 @@ import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
 import 'package:todo/src/task/presentation/bloc/todo_bloc/todo_bloc.dart';
+import 'package:intl/intl.dart';
 
 // ignore: must_be_immutable
 class TodoUpdateScreen extends StatefulWidget {
@@ -36,6 +37,10 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
   late String _status;
   late String _id;
 
+  late DateTime now;
+  late DateFormat formatter;
+  late String formattedDate;
+
   @override
   void initState() {
     super.initState();
@@ -44,6 +49,10 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
     _priority = widget.priority ?? "";
     _status = widget.status ?? "";
     _id = widget.id ?? "";
+
+    now = DateTime.now();
+    formatter = DateFormat('E, d MMM y', 'en');
+    formattedDate = formatter.format(now);
   }
 
   @override
@@ -83,10 +92,21 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                         fontWeight: FontWeight.w500),
                   ),
                   TextFormField(
-                    autovalidateMode: AutovalidateMode.always,
-                    maxLength: 20,
                     initialValue: widget.title,
-                    decoration: const InputDecoration(hintText: "title"),
+                    autovalidateMode: AutovalidateMode.always,
+                    style: const TextStyle(fontSize: 14),
+                    autofocus: true,
+                    cursorColor: AppColors.textFieldCursorColor,
+                    decoration: const InputDecoration(
+                      hintText: "Enter title",
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColors.textFieldBorderColor, width: 1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                    ),
                     onChanged: (text) {
                       setState(() {
                         _title = text;
@@ -101,10 +121,21 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                         fontWeight: FontWeight.w500),
                   ),
                   TextFormField(
-                    autovalidateMode: AutovalidateMode.always,
-                    maxLength: 20,
                     initialValue: widget.date,
-                    decoration: const InputDecoration(hintText: "date"),
+                    autovalidateMode: AutovalidateMode.always,
+                    style: const TextStyle(fontSize: 14),
+                    autofocus: true,
+                    cursorColor: AppColors.textFieldCursorColor,
+                    decoration: InputDecoration(
+                      hintText: formattedDate,
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColors.textFieldBorderColor, width: 1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
+                        ),
+                      ),
+                    ),
                     onChanged: (text) {
                       setState(() {
                         _date = text;
