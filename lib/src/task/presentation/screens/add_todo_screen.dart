@@ -168,18 +168,31 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () {
-          TodoData todo = TodoData(
-            id: '',
-            title: _title ?? '',
-            date: _date ?? '',
-            priority: _priority ?? '',
-            status: 'pending',
-          );
-          createTodoBloc.add(CreateTodos(todo: todo));
-        },
-        child: const Text(AppStrings.createButtonHint),
+      bottomNavigationBar: SizedBox(
+        height: 45,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primaryButtonBackgroundColor,
+            textStyle: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.buttonTextColor),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          onPressed: () {
+            TodoData todo = TodoData(
+              id: '',
+              title: _title ?? '',
+              date: _date ?? '',
+              priority: _priority ?? '',
+              status: 'pending',
+            );
+            createTodoBloc.add(CreateTodos(todo: todo));
+          },
+          child: const Text(AppStrings.createButtonHint),
+        ),
       ),
     );
   }
