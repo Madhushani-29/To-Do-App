@@ -57,6 +57,9 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
+            const Text("Create a new task",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
+            const SizedBox(height: 33),
             Form(
               key: _formKey,
               child: Column(
@@ -69,6 +72,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                         fontSize: 14,
                         fontWeight: FontWeight.w500),
                   ),
+                  const SizedBox(height: 8),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.always,
                     style: const TextStyle(fontSize: 14),
@@ -91,6 +95,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                       });
                     },
                   ),
+                  const SizedBox(height: 26),
                   const Text(
                     AppStrings.dateLabel,
                     style: TextStyle(
@@ -98,6 +103,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                         fontSize: 14,
                         fontWeight: FontWeight.w500),
                   ),
+                  const SizedBox(height: 8),
                   TextFormField(
                     autovalidateMode: AutovalidateMode.always,
                     style: const TextStyle(fontSize: 14),
@@ -120,6 +126,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                       });
                     },
                   ),
+                  const SizedBox(height: 26),
                   const Text(
                     AppStrings.priorityLabel,
                     style: TextStyle(
@@ -127,6 +134,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                         fontSize: 14,
                         fontWeight: FontWeight.w500),
                   ),
+                  const SizedBox(height: 8),
                   DropdownButtonHideUnderline(
                     child: DropdownButton2<String>(
                       isExpanded: true,
