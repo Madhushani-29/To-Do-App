@@ -205,10 +205,25 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
             priority: _priority,
             status: _status,
           );
-          await FirebaseFirestore.instance
-              .collection('todos')
-              .doc(todo.id)
-              .update(todo.toJson());
+          try {
+            await FirebaseFirestore.instance
+                .collection('todos')
+                .doc(todo.id)
+                .update(todo.toJson());
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Todo updated successfully'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+          } catch (error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Todo update failed'),
+                duration: Duration(seconds: 2),
+              ),
+            );
+          }
         },
         child: const Text(AppStrings.updateButtonText),
       ),
