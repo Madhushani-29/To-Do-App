@@ -196,36 +196,51 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () async {
-          TodoData todo = TodoData(
-            id: _id,
-            title: _title,
-            date: _date,
-            priority: _priority,
-            status: _status,
-          );
-          try {
-            await FirebaseFirestore.instance
-                .collection('todos')
-                .doc(todo.id)
-                .update(todo.toJson());
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Todo updated successfully'),
-                duration: Duration(seconds: 2),
-              ),
+      bottomNavigationBar: SizedBox(
+        height: 45,
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.filledButtonBackgroundColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          onPressed: () async {
+            TodoData todo = TodoData(
+              id: _id,
+              title: _title,
+              date: _date,
+              priority: _priority,
+              status: _status,
             );
-          } catch (error) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Todo update failed'),
-                duration: Duration(seconds: 2),
-              ),
-            );
-          }
-        },
-        child: const Text(AppStrings.updateButtonText),
+            try {
+              await FirebaseFirestore.instance
+                  .collection('todos')
+                  .doc(todo.id)
+                  .update(todo.toJson());
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Todo updated successfully'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            } catch (error) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Todo update failed'),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            }
+          },
+          child: const Text(
+            AppStrings.updateButtonText,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.filledButtonFontColor),
+          ),
+        ),
       ),
     );
   }

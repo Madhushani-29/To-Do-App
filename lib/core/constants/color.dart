@@ -8,8 +8,8 @@ class AppColors {
   /*textformfield colors*/
 
   /*button colors*/
-  static const Color primaryButtonBackgroundColor = Color(0xff643FDB);
-  static const Color primaryButtonFontColor = Color(0xffffffff);
+  static const Color filledButtonBackgroundColor = Color(0xff643FDB);
+  static const Color filledButtonFontColor = Color(0xffffffff);
 
   // white background
   static const Color primaryBackgroundColor = Color(0xffffffff);
@@ -70,6 +70,9 @@ class AppColors {
 
   //page title font color
   static const Color pageTitleFontColor = Color(0xFF2A2A2A);
+
+  // button background color
+  static const Color primaryButtonBackgroundColor = Color(0xffffffff);
 
   // divider color
   static const Color dividerColor = Color(0x80d9d9d9);

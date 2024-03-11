@@ -172,11 +172,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
         height: 45,
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.primaryButtonBackgroundColor,
-            textStyle: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: AppColors.buttonTextColor),
+            backgroundColor: AppColors.filledButtonBackgroundColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             ),
@@ -191,7 +187,13 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
             );
             createTodoBloc.add(CreateTodos(todo: todo));
           },
-          child: const Text(AppStrings.createButtonHint),
+          child: const Text(
+            AppStrings.createButtonHint,
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                color: AppColors.filledButtonFontColor),
+          ),
         ),
       ),
     );

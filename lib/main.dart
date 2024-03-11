@@ -26,15 +26,11 @@ class MyApp extends StatelessWidget {
           create: (context) => getIt<TodoBloc>(),
         ),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'ToDo App',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
-          useMaterial3: true,
-        ),
         localizationsDelegates: GlobalMaterialLocalizations.delegates,
-        supportedLocales: const [
+        supportedLocales: [
           Locale('en', ''),
         ],
         home: const HomeScreen(),
