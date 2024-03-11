@@ -49,32 +49,25 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: BlocConsumer<TodoBloc, TodoState>(
-        listener: (context, state) {
-          if (state is TodoSuccessful) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.message),
-              backgroundColor: AppColors.successSnackBarColor,
-              showCloseIcon: true,
-            ));
-          }
-          if (state is TodoFailed) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(state.message),
-              backgroundColor: AppColors.failureSnackBarColor,
-              showCloseIcon: true,
-            ));
-          }
-        },
-        builder: (context, state) {
-          if (state is TodoLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-
-          return ListView(
+        appBar: AppBar(),
+        body: BlocListener<TodoBloc, TodoState>(
+          listener: (context, state) {
+            if (state is TodoSuccessful) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.message),
+                backgroundColor: AppColors.successSnackBarColor,
+                showCloseIcon: true,
+              ));
+            }
+            if (state is TodoFailed) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(state.message),
+                backgroundColor: AppColors.failureSnackBarColor,
+                showCloseIcon: true,
+              ));
+            }
+          },
+          child: ListView(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             children: [
               Form(
@@ -193,9 +186,8 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                           ),
                         ),
                         menuItemStyleData: const MenuItemStyleData(
-                          padding: EdgeInsets.only(left: 30, right: 20),
-                          height:30
-                        ),
+                            padding: EdgeInsets.only(left: 30, right: 20),
+                            height: 30),
                       ),
                     ),
                     ElevatedButton(
@@ -218,9 +210,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                 ),
               ),
             ],
-          );
-        },
-      ),
-    );
+          ),
+        ));
   }
 }
