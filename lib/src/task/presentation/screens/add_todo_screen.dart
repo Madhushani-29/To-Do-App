@@ -131,7 +131,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                       hint: const Text(
                         AppStrings.dropDownButtonText,
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.buttonTextColor,
                         ),
@@ -143,7 +143,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                                 child: Text(
                                   item,
                                   style: const TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.buttonTextColor,
                                   ),

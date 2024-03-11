@@ -155,7 +155,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                       hint: Text(
                         _priority,
                         style: const TextStyle(
-                          fontSize: 12,
+                          fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.buttonTextColor,
                         ),
@@ -167,7 +167,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                                 child: Text(
                                   item,
                                   style: const TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.buttonTextColor,
                                   ),
