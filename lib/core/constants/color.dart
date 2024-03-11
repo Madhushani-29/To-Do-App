@@ -11,6 +11,14 @@ class AppColors {
   static const Color filledButtonBackgroundColor = Color(0xff643FDB);
   static const Color filledButtonFontColor = Color(0xffffffff);
 
+  /*slideable colors*/
+  //slideable delete color
+  static const Color slideableDeleteColor = Color(0xFFFD0C0C);
+  //slideable complete color
+  static const Color slideableCompleteColor = Color(0xFF35CD28);
+  //slideable icon color
+  static const Color slideableIconColor = Color(0xffffffff);
+
   // white background
   static const Color primaryBackgroundColor = Color(0xffffffff);
 
