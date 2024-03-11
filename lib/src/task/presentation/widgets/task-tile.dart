@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -31,11 +32,32 @@ class TaskTile extends StatelessWidget {
           dismissible: DismissiblePane(onDismissed: () {}),
           children: [
             SlidableAction(
-              onPressed: (context) {
-                print("Start first");
+              onPressed: (context) async {
+                try {
+                  await FirebaseFirestore.instance
+                      .collection('todos')
+                      .doc(taskID)
+                      .delete();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: AppColors.successSnackBarColor,
+                      content: Text('Todo deleted successfully'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                } catch (error) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: AppColors.failureSnackBarColor,
+                      content: Text('Todo deletion failed'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
+                ;
               },
-              backgroundColor: Color(0xFFFE4A49),
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.slideableDeleteColor,
+              foregroundColor: AppColors.slideableIconColor,
               icon: Icons.delete_outline_rounded,
             ),
           ],
@@ -44,12 +66,34 @@ class TaskTile extends StatelessWidget {
           motion: const ScrollMotion(),
           children: [
             SlidableAction(
-              flex: 2,
-              onPressed: (context) {
-                print("end first");
+              flex: 1,
+              onPressed: (context) async {
+                try {
+                  await FirebaseFirestore.instance
+                      .collection('todos')
+                      .doc(taskID)
+                      .update({
+                    'status': "completed"
+                  }); // Update only the 'status' field
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: AppColors.successSnackBarColor,
+                      content: Text('Todo status updated successfully'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                } catch (error) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      backgroundColor: AppColors.failureSnackBarColor,
+                      content: Text('Todo status update failed'),
+                      duration: Duration(seconds: 2),
+                    ),
+                  );
+                }
               },
-              backgroundColor: Color(0xFF7BC043),
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.slideableCompleteColor,
+              foregroundColor: AppColors.slideableIconColor,
               icon: Icons.check_box_outlined,
             ),
           ],

@@ -220,6 +220,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                   .update(todo.toJson());
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
+                  backgroundColor: AppColors.successSnackBarColor,
                   content: Text('Todo updated successfully'),
                   duration: Duration(seconds: 2),
                 ),
@@ -227,6 +228,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
             } catch (error) {
               ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(
+                  backgroundColor: AppColors.failureSnackBarColor,
                   content: Text('Todo update failed'),
                   duration: Duration(seconds: 2),
                 ),
