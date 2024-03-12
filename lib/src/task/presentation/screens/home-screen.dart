@@ -27,6 +27,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
   String? selectedValue;
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -197,9 +199,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
                     stream: todosStream,
                     builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
+                      /*if (snapshot.connectionState == ConnectionState.waiting) {
                         return SizedBox(height:50, child: const CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
+                      } */
+                      if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else if (snapshot.data == null ||
                           snapshot.data!.docs.isEmpty) {
@@ -221,11 +224,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             itemBuilder: (BuildContext context, int index) {
                               var task = pendingTasks[index];
                               return TaskTile(
-                                  taskID: task['id'],
-                                  title: task['title'],
-                                  date: task['date'],
-                                  priority: task['priority'],
-                                  status: task['status']);
+                                taskID: task['id'],
+                                title: task['title'],
+                                date: task['date'],
+                                priority: task['priority'],
+                                status: task['status'],
+                                scaffoldContext: _scaffoldKey.currentContext,
+                              );
                             },
                           ),
                           ListView.builder(
@@ -234,11 +239,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               var task = completedTasks[
                                   index]; // corrected variable assignment
                               return TaskTile(
-                                  taskID: task['id'],
-                                  title: task['title'],
-                                  date: task['date'],
-                                  priority: task['priority'],
-                                  status: task['status']);
+                                taskID: task['id'],
+                                title: task['title'],
+                                date: task['date'],
+                                priority: task['priority'],
+                                status: task['status'],
+                                scaffoldContext: _scaffoldKey.currentContext,
+                              );
                             },
                           ),
                         ]);

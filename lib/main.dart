@@ -9,7 +9,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   init();
-  await Firebase.initializeApp(
+  WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());

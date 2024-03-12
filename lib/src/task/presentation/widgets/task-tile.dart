@@ -14,6 +14,7 @@ class TaskTile extends StatelessWidget {
   final String date;
   final String priority;
   final String status;
+  final BuildContext? scaffoldContext;
 
   const TaskTile(
       {super.key,
@@ -21,7 +22,8 @@ class TaskTile extends StatelessWidget {
       required this.title,
       required this.date,
       required this.priority,
-      required this.status});
+      required this.status,
+      required this.scaffoldContext});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +40,8 @@ class TaskTile extends StatelessWidget {
                       .collection('todos')
                       .doc(taskID)
                       .delete();
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  print(scaffoldContext);
+                  ScaffoldMessenger.of(scaffoldContext!).showSnackBar(
                     const SnackBar(
                       backgroundColor: AppColors.successSnackBarColor,
                       content: Text('Todo deleted successfully'),
@@ -46,7 +49,7 @@ class TaskTile extends StatelessWidget {
                     ),
                   );
                 } catch (error) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  ScaffoldMessenger.of(scaffoldContext!).showSnackBar(
                     const SnackBar(
                       backgroundColor: AppColors.failureSnackBarColor,
                       content: Text('Todo deletion failed'),
@@ -75,7 +78,7 @@ class TaskTile extends StatelessWidget {
                       .update({
                     'status': status == "completed" ? "pending" : "completed"
                   });
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  ScaffoldMessenger.of(scaffoldContext!).showSnackBar(
                     const SnackBar(
                       backgroundColor: AppColors.successSnackBarColor,
                       content: Text('Todo status updated successfully'),
@@ -83,7 +86,7 @@ class TaskTile extends StatelessWidget {
                     ),
                   );
                 } catch (error) {
-                  ScaffoldMessenger.of(context).showSnackBar(
+                  ScaffoldMessenger.of(scaffoldContext!).showSnackBar(
                     const SnackBar(
                       backgroundColor: AppColors.failureSnackBarColor,
                       content: Text('Todo status update failed'),
