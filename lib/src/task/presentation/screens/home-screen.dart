@@ -198,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     stream: todosStream,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const CircularProgressIndicator();
+                        return SizedBox(height:50, child: const CircularProgressIndicator());
                       } else if (snapshot.hasError) {
                         return Text('Error: ${snapshot.error}');
                       } else if (snapshot.data == null ||

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
 import 'package:todo/gen/assets.gen.dart';
+
 class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight);
@@ -35,12 +36,12 @@ class _HomeAppBarState extends State<HomeAppBar> {
             children: [
               Text(
                 (DateTime.now()).hour < 11
-                    ? "Morning!"
+                    ? AppStrings.morningText
                     : (DateTime.now()).hour < 15
-                        ? "Afternoon!"
+                        ? AppStrings.afternoonText
                         : (DateTime.now()).hour < 19
-                            ? "Evening!"
-                            : "Night!",
+                            ? AppStrings.eveningText
+                            : AppStrings.eveningText,
                 style: const TextStyle(
                     color: AppColors.greetingFontColor,
                     fontSize: 12,

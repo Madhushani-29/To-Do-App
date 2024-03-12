@@ -42,4 +42,25 @@ class AppStrings {
 
   //create button text
   static const String createButtonHint = "Create";
+
+  //create todo page title
+  static const String createTitle = "Create a new task";
+
+  //update todo page title
+  static const String updateTitle = "Update task";
+
+  //title enter hint
+  static const String titleTextboxHint = "Enter title";
+
+  //morning text
+  static const String morningText = "Morning!";
+
+  //afternoon text
+  static const String afternoonText = "Afternoon!";
+
+  //evening text
+  static const String eveningText = "Evening!";
+
+  //night text
+  static const String nightText = "Night!";
 }

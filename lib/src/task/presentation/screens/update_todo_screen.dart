@@ -79,7 +79,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           children: [
-            const Text("Create a new task",
+            const Text(AppStrings.updateTitle,
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700)),
             const SizedBox(height: 33),
             Form(
@@ -103,7 +103,7 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                     cursorColor: AppColors.textFieldCursorColor,
                     decoration: const InputDecoration(
                       contentPadding: EdgeInsetsDirectional.only(start: 29),
-                      hintText: "Enter title",
+                      hintText: AppStrings.titleTextboxHint,
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
                             color: AppColors.textFieldBorderColor, width: 1),
