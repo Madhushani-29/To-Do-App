@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/core/constants/color.dart';
@@ -104,27 +105,72 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                         fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 8),
-                  TextFormField(
-                    autovalidateMode: AutovalidateMode.always,
-                    style: const TextStyle(fontSize: 14),
-                    autofocus: true,
-                    cursorColor: AppColors.textFieldCursorColor,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsetsDirectional.only(start: 29),
-                      hintText: formattedDate,
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: AppColors.textFieldBorderColor, width: 1),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          enabled: false,
+                          autovalidateMode: AutovalidateMode.always,
+                          style: const TextStyle(fontSize: 14),
+                          autofocus: true,
+                          cursorColor: AppColors.textFieldCursorColor,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsetsDirectional.only(start: 29),
+                            hintText: _date != null
+                                ? _date
+                                : DateTime.now().toString(),
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.textFieldBorderColor,
+                                  width: 1),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                          onChanged: (text) {
+                            setState(() {});
+                          },
                         ),
                       ),
-                    ),
-                    onChanged: (text) {
-                      setState(() {
-                        _date = text;
-                      });
-                    },
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              AppColors.filledButtonBackgroundColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () async {
+                          // Show date picker
+                          final selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: _date != null
+                                ? DateTime.parse(_date!)
+                                : DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          );
+
+                          if (selectedDate != null) {
+                            setState(() {
+                              // Set the selected date to the _date variable
+                              _date = selectedDate
+                                  .toString(); // You may format the date as needed
+                            });
+                          }
+                        },
+                        child: const Text(
+                          AppStrings.createButtonHint,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.filledButtonFontColor,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 26),
                   const Text(
