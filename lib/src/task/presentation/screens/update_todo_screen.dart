@@ -2,8 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:todo/core/constants/color.dart';
 import 'package:todo/core/constants/strings.dart';
+import 'package:todo/gen/assets.gen.dart';
 import 'package:todo/src/task/presentation/Models/todo.dart';
 import 'package:todo/src/task/presentation/bloc/todo_bloc/todo_bloc.dart';
 import 'package:intl/intl.dart';
@@ -128,68 +130,54 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                         fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextFormField(
-                          enabled: false,
-                          autovalidateMode: AutovalidateMode.always,
-                          style: const TextStyle(fontSize: 14),
-                          autofocus: true,
-                          cursorColor: AppColors.textFieldCursorColor,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsetsDirectional.only(start: 29),
-                            hintText: _date,
-                            border: const OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: AppColors.textFieldBorderColor,
-                                  width: 1),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(10.0),
-                              ),
-                            ),
+                  TextFormField(
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.always,
+                    style: const TextStyle(fontSize: 14),
+                    autofocus: true,
+                    cursorColor: AppColors.textFieldCursorColor,
+                    decoration: InputDecoration(
+                      suffixIconConstraints:
+                          BoxConstraints.tight(const Size(26, 26)),
+                      suffixIcon: Padding(
+                        padding: const EdgeInsets.only(right: 10),
+                        child: GestureDetector(
+                          child: SvgPicture.asset(
+                            Assets.icons.calenderIcon,
+                            color: AppColors.primaryButtonIconColor,
                           ),
-                          onChanged: (text) {
-                            setState(() {});
+                          onTap: () async {
+                            final selectedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.parse(_date),
+                              firstDate: DateTime.now(),
+                              lastDate: DateTime(2100),
+                            );
+                                    
+                            if (selectedDate != null) {
+                              setState(() {
+                                _date = DateFormat('yyyy-MM-dd')
+                                    .format(selectedDate);
+                              });
+                            }
                           },
                         ),
                       ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              AppColors.filledButtonBackgroundColor,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                        onPressed: () async {
-                          // Show date picker
-                          final selectedDate = await showDatePicker(
-                            context: context,
-                            initialDate: DateTime.parse(_date),
-                            firstDate: DateTime.now(),
-                            lastDate: DateTime(2100),
-                          );
-
-                          if (selectedDate != null) {
-                            // Extract only the date part
-                            setState(() {
-                              _date =
-                                  DateFormat('yyyy-MM-dd').format(selectedDate);
-                            });
-                          }
-                        },
-                        child: const Text(
-                          AppStrings.createButtonHint,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.filledButtonFontColor,
-                          ),
+                      contentPadding:
+                          const EdgeInsetsDirectional.only(start: 29),
+                      hintText: _date,
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                            color: AppColors.textFieldBorderColor,
+                            width: 1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10.0),
                         ),
                       ),
-                    ],
+                    ),
+                    onChanged: (text) {
+                      setState(() {});
+                    },
                   ),
                   const SizedBox(height: 26),
                   const Text(
