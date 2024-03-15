@@ -16,6 +16,13 @@ class AppStrings {
 
   //priority dropdown list values
   static List<String> priorityListItems = [
+    'High',
+    'Medium',
+    'Low',
+  ];
+
+  //priority dropdown list values
+  static List<String> filterPriorityListItems = [
     'All',
     'High',
     'Medium',

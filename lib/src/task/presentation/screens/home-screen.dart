@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
-                      items: AppStrings.priorityListItems
+                      items: AppStrings.filterPriorityListItems
                           .map((String item) => DropdownMenuItem<String>(
                                 value: item,
                                 child: Text(

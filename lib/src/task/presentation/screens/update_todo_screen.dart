@@ -45,7 +45,8 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
   void initState() {
     super.initState();
     _title = widget.title ?? "";
-    _date = widget.date ?? "";
+    _date = widget.date ?? DateTime.now().toString();
+
     _priority = widget.priority ?? "";
     _status = widget.status ?? "";
     _id = widget.id ?? "";
@@ -127,28 +128,68 @@ class _TodoUpdateScreenState extends State<TodoUpdateScreen> {
                         fontWeight: FontWeight.w500),
                   ),
                   const SizedBox(height: 8),
-                  TextFormField(
-                    initialValue: widget.date,
-                    autovalidateMode: AutovalidateMode.always,
-                    style: const TextStyle(fontSize: 14),
-                    autofocus: true,
-                    cursorColor: AppColors.textFieldCursorColor,
-                    decoration: InputDecoration(
-                      contentPadding: EdgeInsetsDirectional.only(start: 29),
-                      hintText: formattedDate,
-                      border: const OutlineInputBorder(
-                        borderSide: BorderSide(
-                            color: AppColors.textFieldBorderColor, width: 1),
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10.0),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: TextFormField(
+                          enabled: false,
+                          autovalidateMode: AutovalidateMode.always,
+                          style: const TextStyle(fontSize: 14),
+                          autofocus: true,
+                          cursorColor: AppColors.textFieldCursorColor,
+                          decoration: InputDecoration(
+                            contentPadding:
+                                const EdgeInsetsDirectional.only(start: 29),
+                            hintText: _date,
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: AppColors.textFieldBorderColor,
+                                  width: 1),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10.0),
+                              ),
+                            ),
+                          ),
+                          onChanged: (text) {
+                            setState(() {});
+                          },
                         ),
                       ),
-                    ),
-                    onChanged: (text) {
-                      setState(() {
-                        _date = text;
-                      });
-                    },
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              AppColors.filledButtonBackgroundColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        onPressed: () async {
+                          // Show date picker
+                          final selectedDate = await showDatePicker(
+                            context: context,
+                            initialDate: DateTime.parse(_date),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime(2100),
+                          );
+
+                          if (selectedDate != null) {
+                            // Extract only the date part
+                            setState(() {
+                              _date =
+                                  DateFormat('yyyy-MM-dd').format(selectedDate);
+                            });
+                          }
+                        },
+                        child: const Text(
+                          AppStrings.createButtonHint,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: AppColors.filledButtonFontColor,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 26),
                   const Text(

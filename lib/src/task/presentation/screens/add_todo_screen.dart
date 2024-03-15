@@ -117,9 +117,7 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                           decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsetsDirectional.only(start: 29),
-                            hintText: _date != null
-                                ? _date
-                                : DateTime.now().toString(),
+                            hintText: _date ?? DateFormat('E, d MMM y', 'en').format(DateTime.now()),
                             border: const OutlineInputBorder(
                               borderSide: BorderSide(
                                   color: AppColors.textFieldBorderColor,
@@ -154,10 +152,10 @@ class _TodoCreateScreenState extends State<TodoCreateScreen> {
                           );
 
                           if (selectedDate != null) {
+                            // Extract only the date part
                             setState(() {
-                              // Set the selected date to the _date variable
-                              _date = selectedDate
-                                  .toString(); // You may format the date as needed
+                              _date =
+                                  DateFormat('yyyy-MM-dd').format(selectedDate);
                             });
                           }
                         },
